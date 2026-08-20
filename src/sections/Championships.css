@@ -1,0 +1,333 @@
+.championships {
+  width: 100%;
+  padding: clamp(5rem, 9vw, 9rem) 0;
+
+  background: var(--color-yellow);
+}
+
+.championships__container {
+  width: min(90%, var(--container-width));
+  margin: 0 auto;
+}
+
+/* ========================================
+   TOP
+   ======================================== */
+
+.championships__top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 3rem;
+
+  margin-bottom: 4rem;
+}
+
+.championships__eyebrow {
+  display: block;
+  margin-bottom: 1rem;
+
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.championships__top h2 {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 8vw, 8rem);
+  font-weight: 900;
+  line-height: 0.78;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+}
+
+.championships__top h2 span {
+  display: block;
+  color: var(--color-white);
+}
+
+.championships__intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+
+  max-width: 390px;
+}
+
+.championships__intro p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* ========================================
+   GRID
+   ======================================== */
+
+.championships__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+/* ========================================
+   CARD
+   ======================================== */
+
+.championship-card {
+  overflow: hidden;
+
+  background: var(--color-white);
+
+  transition:
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+.championship-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 45px rgba(17, 17, 17, 0.12);
+}
+
+/* ========================================
+   IMAGE
+   ======================================== */
+
+.championship-card__image {
+  position: relative;
+
+  height: clamp(280px, 35vw, 500px);
+
+  overflow: hidden;
+
+  background: var(--color-light-gray);
+}
+
+.championship-card__image img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+  object-position: center 20%;
+
+  transition: transform 0.8s ease;
+}
+
+.championship-card:hover .championship-card__image img {
+  transform: scale(1.06);
+}
+
+.championship-card__number {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.championship-card__season {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+
+  padding: 0.55rem 0.75rem;
+
+  background: var(--color-yellow);
+
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+/* ========================================
+   CONTENT
+   ======================================== */
+
+.championship-card__content {
+  min-height: 260px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 2rem;
+}
+
+.championship-card__label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: var(--color-gray);
+}
+
+.championship-card h3 {
+  margin-top: 0.6rem;
+
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.championship-card__bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+
+  margin-top: 2rem;
+}
+
+.championship-card__bottom p {
+  max-width: 400px;
+
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: var(--color-gray);
+}
+
+.championship-card__link {
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--color-yellow);
+  color: var(--color-black);
+
+  transition:
+    transform var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.championship-card__link:hover {
+  transform: rotate(45deg);
+  background: var(--color-yellow-dark);
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+.championships__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+
+  border-top: 1px solid rgba(17, 17, 17, 0.2);
+
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.championships__footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  transition: gap var(--transition-fast);
+}
+
+.championships__footer a:hover {
+  gap: 0.8rem;
+}
+
+/* ========================================
+   TABLET
+   ======================================== */
+
+@media (max-width: 850px) {
+  .championships__top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .championships__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .championship-card__image {
+    height: 480px;
+  }
+}
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 600px) {
+  .championships {
+    padding: 5rem 0;
+  }
+.championship-card__image img {
+  object-position: center 15%;
+}
+  .championships__top {
+    margin-bottom: 2.5rem;
+  }
+
+  .championships__top h2 {
+    font-size: clamp(4rem, 18vw, 6rem);
+  }
+
+  .championships__intro {
+    gap: 0.75rem;
+  }
+
+  .championships__intro svg {
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0;
+  }
+
+  .championships__intro p {
+    font-size: 0.88rem;
+  }
+
+  .championship-card__image {
+    height: 360px;
+  }
+
+  .championship-card__content {
+    min-height: auto;
+    padding: 1.5rem;
+  }
+
+  .championship-card h3 {
+    font-size: clamp(2.2rem, 11vw, 3.5rem);
+  }
+
+  .championship-card__bottom {
+    align-items: flex-end;
+  }
+
+  .championship-card__bottom p {
+    font-size: 0.82rem;
+  }
+
+  .championship-card__link {
+    width: 44px;
+    height: 44px;
+  }
+
+  .championships__footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

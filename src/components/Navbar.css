@@ -1,0 +1,268 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background: var(--color-white);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+}
+
+.navbar__container {
+  width: min(100%, var(--container-width));
+  min-height: 82px;
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+/* Logo */
+
+.navbar__logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 0.85;
+  flex-shrink: 0;
+}
+
+.navbar__logo span {
+  font-family: var(--font-display);
+  font-size: 2.15rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+
+.navbar__logo small {
+  margin-top: 5px;
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+/* Desktop navigation */
+
+.navbar__desktop {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2vw, 2rem);
+}
+
+.navbar__link {
+  position: relative;
+
+  padding: 0.5rem 0;
+
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  transition: color var(--transition-fast);
+}
+
+.navbar__link::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  width: 0;
+  height: 3px;
+
+  background: var(--color-yellow);
+
+  transition: width var(--transition-normal);
+}
+
+.navbar__link:hover::after {
+  width: 100%;
+}
+
+/* CTA */
+
+.navbar__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  min-height: 44px;
+  padding: 0.7rem 1.2rem;
+
+  background: var(--color-yellow);
+
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+
+  transition:
+    transform var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.navbar__cta:hover {
+  background: var(--color-yellow-dark);
+  transform: translateY(-2px);
+}
+
+/* Mobile button */
+
+.navbar__menu-button {
+  display: none;
+
+  width: 44px;
+  height: 44px;
+
+  align-items: center;
+  justify-content: center;
+
+  background: var(--color-yellow);
+  color: var(--color-black);
+}
+
+/* Mobile menu */
+
+.navbar__mobile {
+  display: none;
+}
+
+/* ========================================
+   TABLET
+   ======================================== */
+
+@media (max-width: 1050px) {
+  .navbar__desktop {
+    gap: 1rem;
+  }
+
+  .navbar__link {
+    font-size: 0.85rem;
+  }
+
+  .navbar__cta {
+    padding: 0.65rem 1rem;
+  }
+}
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 800px) {
+  .navbar__container {
+    min-height: 70px;
+  }
+
+  .navbar__desktop,
+  .navbar__cta {
+    display: none;
+  }
+
+  .navbar__menu-button {
+    display: flex;
+  }
+
+  .navbar__mobile {
+    display: block;
+
+    max-height: 0;
+    overflow: hidden;
+
+    background: var(--color-white);
+
+    border-top: 1px solid transparent;
+
+    transition:
+      max-height 0.45s ease,
+      border-color 0.3s ease;
+  }
+
+  .navbar__mobile.is-open {
+    max-height: 600px;
+    border-top-color: rgba(17, 17, 17, 0.08);
+  }
+
+  .navbar__mobile-links {
+    padding: 1rem var(--container-padding);
+  }
+
+  .navbar__mobile-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    padding: 1rem 0;
+
+    border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+
+    transform: translateY(-8px);
+    opacity: 0;
+
+    transition:
+      color var(--transition-fast),
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+
+  .navbar__mobile.is-open .navbar__mobile-link {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .navbar__mobile-link:hover {
+    color: var(--color-yellow-dark);
+  }
+
+  .navbar__mobile-link span {
+    min-width: 28px;
+
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    color: var(--color-gray);
+  }
+
+  .navbar__mobile-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin: 0 var(--container-padding) 1.5rem;
+    padding: 1rem 1.2rem;
+
+    background: var(--color-yellow);
+
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+}
+
+/* ========================================
+   SMALL PHONES
+   ======================================== */
+
+@media (max-width: 480px) {
+  .navbar__logo span {
+    font-size: 1.85rem;
+  }
+
+  .navbar__logo small {
+    font-size: 0.45rem;
+  }
+}

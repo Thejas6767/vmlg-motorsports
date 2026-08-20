@@ -1,0 +1,60 @@
+:root {
+  /* ================================
+     VMLG BRAND COLORS
+     ================================ */
+
+  --color-yellow: #ffd400;
+  --color-yellow-dark: #e6bd00;
+  --color-yellow-light: #fff3a3;
+
+  --color-white: #ffffff;
+  --color-off-white: #f7f7f5;
+  --color-light-gray: #eeeeea;
+
+  --color-black: #111111;
+  --color-dark: #1a1a1a;
+  --color-gray: #666666;
+  --color-gray-light: #999999;
+
+  /* ================================
+     TYPOGRAPHY
+     ================================ */
+
+  --font-display: "Barlow Condensed", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  /* ================================
+     SPACING
+     ================================ */
+
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 5rem;
+  --space-3xl: 8rem;
+
+  /* ================================
+     CONTAINER
+     ================================ */
+
+  --container-width: 1400px;
+  --container-padding: 5%;
+
+  /* ================================
+     BORDER RADIUS
+     ================================ */
+
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
+
+  /* ================================
+     TRANSITIONS
+     ================================ */
+
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.35s ease;
+  --transition-slow: 0.6s ease;
+}

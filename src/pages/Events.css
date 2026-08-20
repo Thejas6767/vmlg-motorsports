@@ -1,0 +1,458 @@
+.events-page {
+  width: 100%;
+  background: var(--color-white);
+}
+
+/* ========================================
+   COMMON
+======================================== */
+
+.events-page__container {
+  width: min(92%, 1400px);
+  margin: 0 auto;
+}
+
+/* ========================================
+   HERO
+======================================== */
+
+.events-page__hero {
+  position: relative;
+  overflow: hidden;
+  padding: 2rem 0 4rem;
+  background: var(--color-yellow);
+}
+
+.events-page__hero .events-page__container {
+  position: relative;
+  min-height: 650px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.events-page__hero-content {
+  position: relative;
+  z-index: 5;
+  width: 58%;
+}
+
+.events-page__eyebrow {
+  display: block;
+  margin-bottom: 1rem;
+
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 800;
+
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.events-page__hero h1 {
+  max-width: 900px;
+
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 12vw, 12rem);
+  font-weight: 900;
+
+  line-height: 0.76;
+  letter-spacing: -0.02em;
+
+  text-transform: uppercase;
+}
+
+.events-page__hero h1 span {
+  display: block;
+  color: var(--color-white);
+}
+
+.events-page__hero p {
+  max-width: 520px;
+
+  margin-top: 3rem;
+
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* ========================================
+   HERO IMAGE
+======================================== */
+
+
+
+
+/* Image moves when hovering over hero */
+.events-page__hero:hover .events-page__hero-image img {
+  transform: scale(1.14) translateX(-1%);
+}
+
+
+.events-page__list {
+  padding: clamp(5rem, 9vw, 9rem) 0;
+  background: var(--color-white);
+}
+
+.events-page__list-header {
+  display: flex;
+  justify-content: space-between;
+
+  padding-bottom: 1rem;
+
+  border-bottom: 1px solid rgba(17, 17, 17, 0.2);
+
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 800;
+
+  letter-spacing: 0.12em;
+}
+
+/* ========================================
+   EVENT ROW
+======================================== */
+
+.event-row {
+  display: grid;
+
+  grid-template-columns:
+    70px
+    220px
+    1fr
+    170px;
+
+  gap: 2rem;
+
+  align-items: center;
+
+  min-height: 320px;
+
+  padding: 3rem 0;
+
+  border-bottom: 1px solid rgba(17, 17, 17, 0.2);
+
+  transition:
+    background var(--transition-normal),
+    padding var(--transition-normal);
+}
+
+.event-row:hover {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
+  background: var(--color-yellow);
+}
+
+/* ========================================
+   EVENT IMAGE
+======================================== */
+
+.event-row--image {
+  position: relative;
+
+  min-height: 520px;
+
+  overflow: hidden;
+
+  color: #ffffff;
+
+  background: #111;
+}
+
+/* Moving background image */
+.event-row--image::before {
+  content: "";
+
+  position: absolute;
+  inset: -5%;
+
+  background-image: var(--event-image);
+  background-size: cover;
+  background-position: center;
+
+  transform: scale(1);
+
+  transition: transform 1.2s ease;
+
+  z-index: 0;
+}
+
+/* Image moves when hovering */
+.event-row--image:hover::before {
+  transform: scale(1.08) translate(1.5%, -1%);
+}
+
+/* Dark overlay */
+.event-row__overlay {
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.52);
+
+  z-index: 1;
+}
+
+/* Event content */
+.event-row__content {
+  position: relative;
+
+  z-index: 2;
+
+  min-height: 520px;
+
+  display: grid;
+
+  grid-template-columns:
+    80px
+    180px
+    1fr
+    auto;
+
+  align-items: center;
+
+  gap: 35px;
+
+  padding: 60px;
+}
+
+/* ========================================
+   NUMBER
+======================================== */
+
+.event-row__number {
+  align-self: flex-start;
+
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.event-row--image .event-row__number {
+  color: #ffffff;
+}
+
+/* ========================================
+   DATE
+======================================== */
+
+.event-row__date {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 0.8rem;
+}
+
+.event-row__date svg {
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.event-row__date div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.35rem;
+}
+
+.event-row__date strong {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.event-row__date span {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-gray);
+}
+
+.event-row--image .event-row__date strong,
+.event-row--image .event-row__date span {
+  color: #ffffff;
+}
+
+/* ========================================
+   INFO
+======================================== */
+
+.event-row__info > span {
+  font-family: var(--font-display);
+
+  font-size: 0.65rem;
+  font-weight: 800;
+
+  letter-spacing: 0.14em;
+
+  color: var(--color-gray);
+}
+
+.event-row__info h2 {
+  margin-top: 0.6rem;
+
+  font-family: var(--font-display);
+
+  font-size: clamp(3rem, 5.5vw, 5.8rem);
+
+  font-weight: 900;
+
+  line-height: 0.85;
+
+  letter-spacing: -0.035em;
+
+  text-transform: uppercase;
+}
+
+.event-row__location {
+  display: flex;
+  align-items: center;
+
+  gap: 0.4rem;
+
+  margin-top: 1rem;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.event-row__info p {
+  max-width: 500px;
+
+  margin-top: 1rem;
+
+  font-size: 0.85rem;
+  line-height: 1.6;
+
+  color: var(--color-gray);
+}
+
+/* Image version */
+.event-row--image .event-row__date,
+.event-row--image .event-row__info,
+.event-row--image .event-row__link,
+.event-row--image .event-row__location {
+  color: #ffffff;
+}
+
+.event-row--image .event-row__info h2 {
+  color: #ffffff;
+}
+
+.event-row--image .event-row__info > span {
+  color: #ffd500;
+}
+
+.event-row--image .event-row__info p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ========================================
+   ACTION
+======================================== */
+
+.event-row__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  padding: 1rem 1.1rem;
+
+  background: var(--color-black);
+  color: var(--color-white);
+
+  font-family: var(--font-display);
+
+  font-size: 0.7rem;
+  font-weight: 900;
+
+  letter-spacing: 0.06em;
+
+  text-transform: uppercase;
+
+  transition:
+    transform var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.event-row__link:hover {
+  transform: translateY(-3px);
+
+  background: var(--color-dark);
+}
+
+/* Image button */
+.event-row--image .event-row__link {
+  background: #ffd500;
+  color: #111111;
+  border-color: #ffd500;
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 1000px) {
+  .event-row {
+    grid-template-columns:
+      50px
+      180px
+      1fr
+      140px;
+
+    gap: 1.2rem;
+  }
+
+  .event-row__content {
+    grid-template-columns:
+      50px
+      160px
+      1fr
+      auto;
+
+    gap: 20px;
+
+    padding: 40px;
+  }
+}
+/* ========================================
+   EVENT BUTTON - PREMIUM HOVER
+   ======================================== */
+
+.event-row--image .event-row__link {
+  position: relative;
+  overflow: hidden;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-width: 150px;
+  padding: 1.1rem 1.25rem;
+
+  background: var(--color-yellow);
+  color: var(--color-black);
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.event-row--image .event-row__link svg {
+  transition: transform 0.3s ease;
+}
+
+.event-row--image .event-row__link:hover {
+  transform: translateY(-4px);
+  background: var(--color-white);
+}
+
+.event-row--image .event-row__link:hover svg {
+  transform: translate(3px, -3px);
+}

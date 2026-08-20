@@ -1,0 +1,352 @@
+.latest-action {
+  width: 100%;
+  padding: clamp(5rem, 9vw, 9rem) 0;
+
+  background: var(--color-white);
+}
+
+.latest-action__container {
+  width: min(90%, var(--container-width));
+  margin: 0 auto;
+}
+
+/* ========================================
+   HEADING
+   ======================================== */
+
+.latest-action__heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 3rem;
+
+  margin-bottom: 4rem;
+}
+
+.latest-action__eyebrow {
+  display: block;
+  margin-bottom: 1rem;
+
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  color: var(--color-gray);
+}
+
+.latest-action__heading h2 {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 8vw, 8rem);
+  font-weight: 900;
+  line-height: 0.78;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+}
+
+.latest-action__heading h2 span {
+  display: block;
+  color: var(--color-yellow-dark);
+}
+
+.latest-action__heading > p {
+  max-width: 390px;
+
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--color-gray);
+}
+
+/* ========================================
+   FEATURE
+   ======================================== */
+
+.latest-action__feature {
+  display: grid;
+  grid-template-columns: 1.55fr 0.75fr;
+
+  background: var(--color-yellow);
+
+  overflow: hidden;
+}
+
+/* ========================================
+   VIDEO
+   ======================================== */
+
+.latest-action__video {
+  position: relative;
+
+  min-height: 580px;
+
+  overflow: hidden;
+
+  background: var(--color-black);
+}
+
+.latest-action__video video {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+  object-position: center;
+
+  pointer-events: none;
+}
+
+.latest-action__overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.15),
+      transparent 45%,
+      rgba(0, 0, 0, 0.3)
+    );
+
+  pointer-events: none;
+}
+
+.latest-action__badge {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  padding: 0.65rem 0.85rem;
+
+  background: var(--color-white);
+
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+.latest-action__badge span {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: var(--color-yellow);
+}
+
+.latest-action__play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  width: 68px;
+  height: 68px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid var(--color-white);
+  border-radius: 50%;
+
+  background: var(--color-yellow);
+  color: var(--color-black);
+
+  transform: translate(-50%, -50%);
+}
+
+.latest-action__round {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.5rem;
+
+  color: var(--color-white);
+
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+/* ========================================
+   CONTENT
+   ======================================== */
+
+.latest-action__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: clamp(2rem, 4vw, 4rem);
+}
+
+.latest-action__category {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: var(--color-gray);
+}
+
+.latest-action__content h3 {
+  margin-top: 0.7rem;
+
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 6vw, 6rem);
+  font-weight: 900;
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.latest-action__content p {
+  max-width: 380px;
+
+  margin-top: 1.8rem;
+
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.latest-action__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  width: fit-content;
+  min-width: 180px;
+
+  margin-top: 2rem;
+  padding: 1rem 1.2rem;
+
+  background: var(--color-black);
+  color: var(--color-white);
+
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+
+  transition:
+    transform var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.latest-action__button:hover {
+  transform: translateY(-3px);
+  background: var(--color-dark);
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+.latest-action__footer {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+
+  border-top: 1px solid rgba(17, 17, 17, 0.15);
+
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  color: var(--color-gray);
+}
+
+/* ========================================
+   TABLET
+   ======================================== */
+
+@media (max-width: 900px) {
+  .latest-action__heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .latest-action__feature {
+    grid-template-columns: 1fr;
+  }
+
+  .latest-action__video {
+    min-height: 500px;
+  }
+
+  .latest-action__content {
+    min-height: 430px;
+  }
+}
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 600px) {
+  .latest-action {
+    padding: 5rem 0;
+  }
+
+  .latest-action__heading {
+    margin-bottom: 2.5rem;
+  }
+
+  .latest-action__heading h2 {
+    font-size: clamp(4rem, 18vw, 6rem);
+  }
+
+  .latest-action__heading > p {
+    font-size: 0.88rem;
+  }
+
+  .latest-action__video {
+    min-height: 390px;
+  }
+
+  .latest-action__badge {
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .latest-action__round {
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  .latest-action__play {
+    width: 56px;
+    height: 56px;
+  }
+
+  .latest-action__content {
+    min-height: auto;
+    padding: 2rem 1.5rem 2.5rem;
+  }
+
+  .latest-action__content h3 {
+    font-size: clamp(3.5rem, 16vw, 5rem);
+  }
+
+  .latest-action__content p {
+    font-size: 0.85rem;
+  }
+
+  .latest-action__button {
+    width: 100%;
+  }
+
+  .latest-action__footer {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
