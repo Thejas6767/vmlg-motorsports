@@ -1,11 +1,10 @@
-import { ArrowUpRight, Play } from "lucide-react";
-
+import { ArrowUpRight } from "lucide-react";
 import image1 from "../assets/images/Screenshot 2026-08-19 175240.jpg";
 import image2 from "../assets/images/Screenshot 2026-08-19 175320.jpg";
 import image3 from "../assets/images/Screenshot 2026-08-19 175341.jpg";
-import image4 from "../assets/images/Screenshot 2026-08-19 175359.jpg";
-
-import featuredVideo from "../assets/videos/13820397_1920_1080_120fps.mp4";
+import image4 from "../assets/images/motocross-start.avif";
+import ctaVideo from "../assets/videos/13441915_1920_1080_25fps.mp4";
+import featuredVideo from "../assets/videos/2300435-hd_1920_1080_30fps.mp4";
 
 import "./Gallery.css";
 
@@ -15,25 +14,49 @@ const Gallery = () => {
 
       {/* HERO */}
       <section className="gallery-page__hero">
-        <div className="gallery-page__container">
+  <div className="gallery-page__container">
 
-          <span className="gallery-page__eyebrow">
-            03 / VMLG MOTOR SPORTS
-          </span>
+    <div className="gallery-page__hero-content">
 
-          <h1>
-            THE
-            <span>MEDIA.</span>
-          </h1>
+      <span className="gallery-page__eyebrow">
+        03 / VMLG MOTOR SPORTS
+      </span>
 
-          <p>
-            Step inside the world of VMLG motorsport.
-            Explore race-day moments, machines and
-            unforgettable action.
-          </p>
+      <h1>
+        THE
+        <span>MEDIA.</span>
+      </h1>
 
-        </div>
-      </section>
+      <p>
+        Step inside the world of VMLG motorsport.
+        Explore race-day moments, machines and
+        unforgettable action.
+      </p>
+
+    </div>
+
+    <div className="gallery-page__filmstrip">
+
+      <div className="gallery-page__filmstrip-item gallery-page__filmstrip-item--one">
+        <img src={image1} alt="VMLG race day" />
+      </div>
+
+      <div className="gallery-page__filmstrip-item gallery-page__filmstrip-item--two">
+        <img src={image2} alt="VMLG track action" />
+      </div>
+
+      <div className="gallery-page__filmstrip-item gallery-page__filmstrip-item--three">
+        <img src={image3} alt="VMLG championship" />
+      </div>
+
+      <div className="gallery-page__filmstrip-item gallery-page__filmstrip-item--four">
+        <img src={image4} alt="VMLG motorsport" />
+      </div>
+
+    </div>
+
+  </div>
+</section>
 
       {/* FEATURED VIDEO */}
       <section className="gallery-page__featured">
@@ -68,13 +91,6 @@ const Gallery = () => {
                 FULL
                 <span>THROTTLE.</span>
               </h2>
-            </div>
-
-            <div className="gallery-page__play">
-              <Play
-                size={22}
-                fill="currentColor"
-              />
             </div>
 
           </div>
@@ -155,30 +171,42 @@ const Gallery = () => {
       </section>
 
       {/* CTA */}
-      <section className="gallery-page__cta">
+     <section className="gallery-page__cta">
 
-        <div className="gallery-page__cta-content">
+  <video
+    className="gallery-page__cta-video"
+    src={ctaVideo}
+    autoPlay
+    muted
+    loop
+    playsInline
+    aria-hidden="true"
+  />
 
-          <span>03 / STAY CONNECTED</span>
+  <div className="gallery-page__cta-overlay" />
 
-          <h2>
-            FOLLOW THE
-            <span>ACTION.</span>
-          </h2>
+  <div className="gallery-page__cta-content">
 
-          <a
-            href="https://www.instagram.com/vamcymerlamotorsports"
-            target="_blank"
-            rel="noreferrer"
-            className="gallery-page__button"
-          >
-            Follow VMLG
-            <ArrowUpRight size={19} />
-          </a>
+    <span>03 / STAY CONNECTED</span>
 
-        </div>
+    <h2>
+      FOLLOW THE
+      <span>ACTION.</span>
+    </h2>
 
-      </section>
+    <a
+      href="https://www.instagram.com/vamcymerlamotorsports"
+      target="_blank"
+      rel="noreferrer"
+      className="gallery-page__button"
+    >
+      Follow VMLG
+      <ArrowUpRight size={19} />
+    </a>
+
+  </div>
+
+</section>
 
     </main>
   );

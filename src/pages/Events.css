@@ -83,12 +83,50 @@
 
 
 
-/* Image moves when hovering over hero */
-.events-page__hero:hover .events-page__hero-image img {
-  transform: scale(1.14) translateX(-1%);
+.events-page__hero-image {
+  position: absolute;
+
+  right: -10%;
+  bottom: -8%;
+
+  width: 62%;
+  max-width: 950px;
+
+  z-index: 2;
+
+  transform: rotate(-3deg);
+
+  pointer-events: none;
+}
+.events-page__sticker {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
 }
 
+/* BORN TO RACE */
+.events-page__sticker--born {
+  width: 170px;
+  left: 49%;
+  top: 8%;
+  transform: rotate(-8deg);
+}
 
+/* X */
+.events-page__sticker--x {
+  width: 100px;
+  left: 10%;
+  bottom: 4%;
+  transform: rotate(-12deg);
+}
+
+/* CHECKERED FLAG */
+.events-page__sticker--flag {
+  width: 150px;
+  right: 2%;
+  top: 7%;
+  transform: rotate(8deg);
+}
 .events-page__list {
   padding: clamp(5rem, 9vw, 9rem) 0;
   background: var(--color-white);
@@ -455,4 +493,273 @@
 
 .event-row--image .event-row__link:hover svg {
   transform: translate(3px, -3px);
+}
+/* ========================================
+   FINAL MOBILE FIX
+   ======================================== */
+
+@media (max-width: 700px) {
+
+  /* ---------- HERO ---------- */
+
+  .events-page__hero {
+    padding: 4.5rem 0 2rem;
+  }
+
+  .events-page__hero .events-page__container {
+    min-height: 450px;
+    display: block;
+    overflow: visible;
+  }
+
+  .events-page__hero-content {
+    width: 100%;
+    position: relative;
+    z-index: 5;
+  }
+
+  .events-page__hero h1 {
+    font-size: clamp(3.8rem, 18vw, 6rem);
+    line-height: 0.78;
+  }
+
+  .events-page__hero p {
+    max-width: 260px;
+    margin-top: 1.8rem;
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+
+
+  /* ---------- BIKE ---------- */
+
+  .events-page__hero-image {
+    position: absolute;
+
+    width: 76%;
+    height: auto;
+
+    right: -8%;
+    bottom: 2rem;
+    top: auto;
+
+    overflow: visible;
+
+    z-index: 3;
+
+    pointer-events: none;
+  }
+
+  .events-page__hero-image img {
+    width: 100%;
+    height: auto;
+
+    object-fit: contain;
+
+    transform: none;
+
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .events-page__hero-image::after {
+    display: none;
+  }
+
+
+  /* ---------- BORN TO RACE ---------- */
+
+  .events-page__sticker--born {
+    width: 95px;
+
+    left: auto;
+    right: 2%;
+    top: 6.5rem;
+
+    transform: rotate(-8deg);
+
+    z-index: 4;
+  }
+
+
+  /* ---------- X ---------- */
+
+  .events-page__sticker--x {
+    width: 60px;
+
+    left: 8%;
+    bottom: 5rem;
+
+    transform: rotate(-12deg);
+
+    z-index: 4;
+  }
+
+
+  /* ---------- CHECKERED FLAG ---------- */
+
+  .events-page__sticker--flag {
+    width: 80px;
+
+    right: 1%;
+    top:3.5rem;
+
+    transform: rotate(8deg);
+
+    z-index: 4;
+  }
+
+
+  /* ---------- HERO DECORATIONS ---------- */
+
+  .events-page__hero-number {
+    display: none;
+  }
+
+  .events-page__hero-lines {
+    display: none;
+  }
+
+  .events-page__hero-vertical {
+    display: none;
+  }
+
+
+  /* ========================================
+     EVENT CALENDAR
+     ======================================== */
+
+  .events-page__list {
+    padding: 3.5rem 0;
+  }
+
+  .events-page__list-header {
+    padding-bottom: 0.8rem;
+  }
+
+
+  /* ---------- EVENT CARD ---------- */
+
+  .event-row--image {
+    min-height: 520px;
+
+    width: 100%;
+
+    display: block;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border: none;
+  }
+
+
+  /* Background */
+
+  .event-row--image::before {
+    inset: 0;
+
+    background-size: cover;
+    background-position: center;
+
+    transform: none;
+  }
+
+  .event-row--image:hover::before {
+    transform: none;
+  }
+
+
+  /* ---------- CONTENT ---------- */
+
+  .event-row__content {
+    min-height: 520px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 0;
+
+    padding: 1.5rem;
+
+    position: relative;
+    z-index: 2;
+  }
+
+
+  /* ---------- NUMBER ---------- */
+
+  .event-row__number {
+    margin-bottom: auto;
+
+    font-size: 0.8rem;
+  }
+
+
+  /* ---------- DATE ---------- */
+
+  .event-row__date {
+    order: initial;
+
+    display: flex;
+
+    margin-bottom: 1.2rem;
+
+    gap: 0.6rem;
+
+    font-size: 0.75rem;
+  }
+
+
+  /* ---------- EVENT INFO ---------- */
+
+  .event-row__info {
+    order: initial;
+
+    width: 100%;
+  }
+
+  .event-row__info > span {
+    font-size: 0.55rem;
+  }
+
+  .event-row__info h2 {
+    font-size: clamp(2.5rem, 14vw, 4.5rem);
+
+    line-height: 0.82;
+
+    max-width: 90%;
+  }
+
+  .event-row__location {
+    margin-top: 0.8rem;
+
+    font-size: 0.7rem;
+  }
+
+  .event-row__info p {
+    max-width: 240px;
+
+    margin-top: 0.8rem;
+
+    font-size: 0.72rem;
+
+    line-height: 1.5;
+  }
+
+
+  /* ---------- ENQUIRE BUTTON ---------- */
+
+  .event-row__link {
+    order: initial;
+
+    width: 100%;
+
+    margin-top: 1.2rem;
+
+    padding: 0.9rem 1rem;
+  }
 }

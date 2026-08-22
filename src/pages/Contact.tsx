@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 
 import { contactContent } from "../data/contact";
+import contactBike from "../assets/images/contact-bike.jpg";
 import "./Contact.css";
 
 const Contact = () => {
@@ -28,7 +29,12 @@ const Contact = () => {
           <p>
             {contactContent.description}
           </p>
-
+<img
+  className="contact-page__hero-image"
+  src={contactBike}
+  alt="Motocross rider"
+  aria-hidden="true"
+/>
         </div>
       </section>
 

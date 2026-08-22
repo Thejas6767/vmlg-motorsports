@@ -1,9 +1,15 @@
 import { ArrowUpRight, Play } from "lucide-react";
 import aboutImage from "../assets/images/Screenshot 2026-08-19 175359.jpg";
 import { aboutContent } from "../data/about";
+import experienceVideo from "../assets/videos/12294780-hd_1920_1080_24fps.mp4";
+import { useState } from "react";
 import "./About.css";
 
 const About = () => {
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const openExperienceVideo = () => {
+  setIsVideoOpen(true);
+};
   return (
     <main className="about-page">
 
@@ -29,69 +35,51 @@ const About = () => {
       </section>
 
       {/* STORY */}
-      <section className="about-page__story">
-        <div className="about-page__container">
+<section
+  className="about-page__story"
+  style={{
+    backgroundImage: `url(${aboutImage})`,
+  }}
+>
+  <div className="about-page__story-overlay" />
 
-          <div className="about-page__story-grid">
+  <div className="about-page__container">
 
-            <div className="about-page__story-heading">
-              <span>01 / OUR STORY</span>
+    <div className="about-page__story-grid">
 
-              <h2>
-                BUILT FOR
-                <span>SPEED.</span>
-              </h2>
-            </div>
+      <div className="about-page__story-heading">
+        <span>01 / OUR STORY</span>
 
-            <div className="about-page__story-content">
+        <h2>
+          BUILT FOR
+          <span>SPEED.</span>
+        </h2>
+      </div>
 
-              <p className="about-page__lead">
-                {aboutContent.description}
-              </p>
+      <div className="about-page__story-content">
 
-              <p>
-                {aboutContent.secondaryDescription}
-              </p>
+        <p className="about-page__lead">
+          {aboutContent.description}
+        </p>
 
-              <a
-                href="/contact"
-                className="about-page__button"
-              >
-                GET IN TOUCH
-                <ArrowUpRight size={19} />
-              </a>
+        <p>
+          {aboutContent.secondaryDescription}
+        </p>
 
-            </div>
+        <a
+          href="/contact"
+          className="about-page__button"
+        >
+          GET IN TOUCH
+          <ArrowUpRight size={19} />
+        </a>
 
-          </div>
+      </div>
 
-        </div>
-      </section>
+    </div>
 
-      {/* IMAGE */}
-      <section className="about-page__visual">
-        <div className="about-page__container">
-
-          <div className="about-page__image">
-
-            <img
-              src={aboutImage}
-              alt="VMLG Motorsport rider racing"
-            />
-
-            <div className="about-page__image-tag">
-              VMLG MOTOR SPORTS
-            </div>
-
-            <div className="about-page__image-number">
-              01
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
+  </div>
+</section>
       {/* VALUES */}
       <section className="about-page__values">
         <div className="about-page__container">
@@ -107,8 +95,8 @@ const About = () => {
 
           <div className="about-page__values-grid">
 
-            <article>
-              <span>01</span>
+           <article data-number="01">
+            
 
               <h3>PERFORMANCE</h3>
 
@@ -118,8 +106,8 @@ const About = () => {
               </p>
             </article>
 
-            <article>
-              <span>02</span>
+            <article data-number="02">
+              
 
               <h3>PASSION</h3>
 
@@ -129,8 +117,8 @@ const About = () => {
               </p>
             </article>
 
-            <article>
-              <span>03</span>
+            <article data-number="03">
+             
 
               <h3>COMMUNITY</h3>
 
@@ -156,19 +144,44 @@ const About = () => {
             LIVE THE
             <span>RACE.</span>
           </h2>
-
-          <button
-            type="button"
-            className="about-page__play"
-            aria-label="Play VMLG racing video"
-          >
-            <Play size={22} fill="currentColor" />
-          </button>
+<button
+  className="about-page__play"
+  onClick={openExperienceVideo}
+>
+  <span>WATCH Race</span>
+  <ArrowUpRight size={18} />
+</button>
 
         </div>
 
       </section>
+{isVideoOpen && (
+  <div
+    className="about-video-modal"
+    onClick={() => setIsVideoOpen(false)}
+  >
+    <div
+      className="about-video-modal__content"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <button
+        className="about-video-modal__close"
+        onClick={() => setIsVideoOpen(false)}
+        aria-label="Close video"
+      >
+        ×
+      </button>
 
+      <video
+        src={experienceVideo}
+        controls
+        autoPlay
+        playsInline
+        className="about-video-modal__video"
+      />
+    </div>
+  </div>
+)}
     </main>
   );
 };
