@@ -1,4 +1,4 @@
-import { ArrowUpRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import aboutImage from "../assets/images/Screenshot 2026-08-19 175359.jpg";
 import { aboutContent } from "../data/about";
 import experienceVideo from "../assets/videos/12294780-hd_1920_1080_24fps.mp4";
@@ -71,7 +71,7 @@ const About = () => {
           className="about-page__button"
         >
           GET IN TOUCH
-          <ArrowUpRight size={19} />
+          <ArrowRight size={19} />
         </a>
 
       </div>
@@ -149,7 +149,7 @@ const About = () => {
   onClick={openExperienceVideo}
 >
   <span>WATCH Race</span>
-  <ArrowUpRight size={18} />
+  <ArrowRight size={18} />
 </button>
 
         </div>
