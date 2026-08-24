@@ -373,3 +373,14 @@
     gap: 0.5rem;
   }
 }
+.next-word {
+  display: block;
+}
+
+.next-word--black {
+  color: var(--color-black);
+}
+
+.next-word--yellow {
+  color: var(--color-yellow-dark);
+}

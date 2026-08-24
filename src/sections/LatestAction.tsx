@@ -26,10 +26,59 @@ const LatestAction = () => {
               03 / FROM THE TRACK
             </span>
 
-            <h2>
-              LATEST
-              <span>ACTION.</span>
-            </h2>
+          <motion.h2
+  initial="hidden"
+  whileInView="show"
+  viewport={{ once: true, amount: 0.3 }}
+  variants={{
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.12,
+      },
+    },
+  }}
+>
+  <motion.span
+    className="latest-word latest-word--black"
+    variants={{
+      hidden: {
+        opacity: 0,
+        y: 50,
+      },
+      show: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.6,
+          ease: "easeOut",
+        },
+      },
+    }}
+  >
+    LATEST
+  </motion.span>
+
+  <motion.span
+    className="latest-word latest-word--yellow"
+    variants={{
+      hidden: {
+        opacity: 0,
+        y: 50,
+      },
+      show: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.6,
+          ease: "easeOut",
+        },
+      },
+    }}
+  >
+    ACTION.
+  </motion.span>
+</motion.h2>
           </div>
 
           <p>

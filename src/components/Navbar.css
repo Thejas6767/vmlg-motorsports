@@ -83,7 +83,13 @@
 .navbar__link:hover::after {
   width: 100%;
 }
+.navbar__link.is-active {
+  color: var(--color-black);
+}
 
+.navbar__link.is-active::after {
+  width: 100%;
+}
 /* CTA */
 
 .navbar__cta {
@@ -111,6 +117,14 @@
 .navbar__cta:hover {
   background: var(--color-yellow-dark);
   transform: translateY(-2px);
+}
+
+.navbar__cta svg {
+  transition: transform 0.3s ease;
+}
+
+.navbar__cta:hover svg {
+  transform: translate(4px, -4px);
 }
 
 /* Mobile button */
@@ -218,10 +232,34 @@
   }
 
   .navbar__mobile.is-open .navbar__mobile-link {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.12s;
+}
 
+.navbar__mobile.is-open .navbar__mobile-link:nth-child(1) {
+  transition-delay: 0.05s;
+}
+
+.navbar__mobile.is-open .navbar__mobile-link:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.navbar__mobile.is-open .navbar__mobile-link:nth-child(3) {
+  transition-delay: 0.15s;
+}
+
+.navbar__mobile.is-open .navbar__mobile-link:nth-child(4) {
+  transition-delay: 0.2s;
+}
+
+.navbar__mobile.is-open .navbar__mobile-link:nth-child(5) {
+  transition-delay: 0.25s;
+}
+
+.navbar__mobile.is-open .navbar__mobile-link:nth-child(6) {
+  transition-delay: 0.3s;
+}
   .navbar__mobile-link:hover {
     color: var(--color-yellow-dark);
   }

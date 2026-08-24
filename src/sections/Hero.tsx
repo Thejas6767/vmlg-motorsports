@@ -38,20 +38,87 @@ const Hero = () => {
             VMLG MOTOR SPORTS
           </motion.p>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.9,
-              delay: 0.45,
-              ease: "easeOut",
-            }}
-          >
-            WHERE
-            <span>SPEED</span>
-            MEETS
-            <span>PASSION.</span>
-          </motion.h1>
+        <motion.h1
+  initial="hidden"
+  animate="show"
+  variants={{
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.12,
+        delayChildren: 0.35,
+      },
+    },
+  }}
+>
+  <motion.span
+    className="hero-word hero-word--black"
+    variants={{
+      hidden: { opacity: 0, y: 60 },
+      show: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.6,
+          ease: "easeOut",
+        },
+      },
+    }}
+  >
+    WHERE
+  </motion.span>
+
+  <motion.span
+    className="hero-word hero-word--black"
+    variants={{
+      hidden: { opacity: 0, y: 60 },
+      show: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.6,
+          ease: "easeOut",
+        },
+      },
+    }}
+  >
+    SPEED
+  </motion.span>
+
+  <motion.span
+    className="hero-word hero-word--black"
+    variants={{
+      hidden: { opacity: 0, y: 60 },
+      show: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.6,
+          ease: "easeOut",
+        },
+      },
+    }}
+  >
+    MEETS
+  </motion.span>
+
+  <motion.span
+    className="hero-word hero-word--white"
+    variants={{
+      hidden: { opacity: 0, y: 60 },
+      show: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.6,
+          ease: "easeOut",
+        },
+      },
+    }}
+  >
+    PASSION.
+  </motion.span>
+</motion.h1>
 
           <motion.p
             className="hero__description"

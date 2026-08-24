@@ -540,3 +540,14 @@
   box-shadow: 0 0 0 1000px var(--color-black) inset;
   transition: background-color 5000s ease-in-out 0s;
 }
+.contact-word {
+  display: block;
+}
+
+.contact-page__hero h1 .contact-word--black {
+  color: var(--color-black);
+}
+
+.contact-page__hero h1 .contact-word--white {
+  color: var(--color-white);
+}

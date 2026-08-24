@@ -1,4 +1,4 @@
-import { ArrowUpRight, Play } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { mediaItems } from "../data/media";
 
@@ -97,32 +97,7 @@ const Gallery = () => {
                   alt={item.title}
                 />
 
-                {item.type === "video" && (
-                  <motion.div
-                    className="gallery-card__play"
-                    initial={{
-                      opacity: 0,
-                      scale: 0.7,
-                    }}
-                    whileInView={{
-                      opacity: 1,
-                      scale: 1,
-                    }}
-                    viewport={{
-                      once: true,
-                    }}
-                    transition={{
-                      duration: 0.5,
-                      delay: 0.35 + index * 0.1,
-                    }}
-                  >
-                    <Play
-                      size={18}
-                      fill="currentColor"
-                    />
-                  </motion.div>
-                )}
-
+                
                 <div className="gallery-card__overlay" />
 
                 <span className="gallery-card__number">

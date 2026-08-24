@@ -27,10 +27,59 @@ const NextEvent = () => {
               01 / UPCOMING
             </span>
 
-            <h2>
-              NEXT
-              <span>EVENT.</span>
-            </h2>
+            <motion.h2
+  initial="hidden"
+  whileInView="show"
+  viewport={{ once: true, amount: 0.3 }}
+  variants={{
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.14,
+      },
+    },
+  }}
+>
+  <motion.span
+    className="next-word next-word--black"
+    variants={{
+      hidden: {
+        opacity: 0,
+        y: 55,
+      },
+      show: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.6,
+          ease: "easeOut",
+        },
+      },
+    }}
+  >
+    NEXT
+  </motion.span>
+
+  <motion.span
+    className="next-word next-word--yellow"
+    variants={{
+      hidden: {
+        opacity: 0,
+        y: 55,
+      },
+      show: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.6,
+          ease: "easeOut",
+        },
+      },
+    }}
+  >
+    EVENT.
+  </motion.span>
+</motion.h2>
           </div>
 
           <p className="next-event__intro">

@@ -206,10 +206,23 @@
 .hero__video-dot {
   width: 8px;
   height: 8px;
-
   border-radius: 50%;
-
   background: var(--color-yellow);
+
+  animation: hero-live-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes hero-live-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.6);
+    opacity: 0.55;
+  }
 }
 /* ========================================
    TABLET
@@ -320,4 +333,15 @@
   .hero__description {
     font-size: 0.84rem;
   }
+}
+.hero-word {
+  display: block;
+}
+
+.hero-word--black {
+  color: var(--color-black);
+}
+
+.hero-word--white {
+  color: var(--color-white);
 }

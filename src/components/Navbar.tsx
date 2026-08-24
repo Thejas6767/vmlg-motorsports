@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import "./Navbar.css";
 
@@ -28,17 +28,19 @@ const Navbar = () => {
           <small>MOTOR SPORTS</small>
        </Link>
 
-        <nav className="navbar__desktop">
-          {navLinks.map((link) => (
-  <Link
-    key={link.label}
-    to={link.href}
-    className="navbar__link"
-  >
-    {link.label}
-  </Link>
-))}
-        </nav>
+       <nav className="navbar__desktop">
+  {navLinks.map((link) => (
+    <NavLink
+      key={link.label}
+      to={link.href}
+      className={({ isActive }) =>
+        `navbar__link ${isActive ? "is-active" : ""}`
+      }
+    >
+      {link.label}
+    </NavLink>
+  ))}
+</nav>
 
         <Link to="/join" className="navbar__cta">
           <span>Join Us</span>

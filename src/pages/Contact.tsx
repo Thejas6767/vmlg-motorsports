@@ -4,7 +4,7 @@ import {
   Mail,
   MapPin,
 } from "lucide-react";
-
+import { motion } from "framer-motion";
 import { contactContent } from "../data/contact";
 import contactBike from "../assets/images/contact-bike.jpg";
 import "./Contact.css";
@@ -21,19 +21,74 @@ const Contact = () => {
             {contactContent.eyebrow}
           </span>
 
-          <h1>
-            LET'S
-            <span>TALK.</span>
-          </h1>
+         <motion.h1
+  initial="hidden"
+  animate="show"
+  variants={{
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.16,
+      },
+    },
+  }}
+>
+  <motion.span
+    className="contact-word contact-word--black"
+    variants={{
+      hidden: {
+        opacity: 0,
+        y: 60,
+      },
+      show: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.7,
+          ease: "easeOut",
+        },
+      },
+    }}
+  >
+    LET'S
+  </motion.span>
+
+  <motion.span
+    className="contact-word contact-word--white"
+    variants={{
+      hidden: {
+        opacity: 0,
+        y: 60,
+      },
+      show: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.7,
+          ease: "easeOut",
+        },
+      },
+    }}
+  >
+    TALK.
+  </motion.span>
+</motion.h1>
 
           <p>
             {contactContent.description}
           </p>
-<img
+<motion.img
   className="contact-page__hero-image"
   src={contactBike}
   alt="Motocross rider"
   aria-hidden="true"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{
+    duration: 1,
+    delay: 0.35,
+    ease: "easeOut",
+  }}
 />
         </div>
       </section>

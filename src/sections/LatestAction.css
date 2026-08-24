@@ -350,3 +350,14 @@
     gap: 0.5rem;
   }
 }
+.latest-word {
+  display: block;
+}
+
+.latest-word--black {
+  color: var(--color-black);
+}
+
+.latest-word--yellow {
+  color: var(--color-yellow-dark);
+}
