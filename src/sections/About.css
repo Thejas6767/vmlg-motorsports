@@ -306,3 +306,9 @@
     gap: 0.5rem;
   }
 }
+.about__content h2,
+.about__text,
+.about__image,
+.about__image-number {
+  will-change: transform, opacity;
+}

@@ -144,22 +144,6 @@ transition:
   transform: rotate(8deg);
   z-index: 4;
 }
-.gallery-page__filmstrip-item--one {
-  animation: galleryFloatOne 5s ease-in-out infinite;
-}
-
-.gallery-page__filmstrip-item--two {
-  animation: galleryFloatTwo 6s ease-in-out infinite;
-}
-
-.gallery-page__filmstrip-item--three {
-  animation: galleryFloatThree 5.5s ease-in-out infinite;
-}
-
-.gallery-page__filmstrip-item--four {
-  animation: galleryFloatFour 6.5s ease-in-out infinite;
-}
-
 @keyframes galleryFloatOne {
   0%, 100% {
     transform: rotate(-8deg) translateY(0);
@@ -686,4 +670,33 @@ transition:
 }
 .gallery-photo:nth-child(4) img {
   object-position: 70% 30%;
+}
+.gallery-page__filmstrip-item--one {
+  transform: rotate(-8deg);
+}
+
+.gallery-page__filmstrip-item--two {
+  transform: rotate(4deg);
+}
+
+.gallery-page__filmstrip-item--three {
+  transform: rotate(-5deg);
+}
+
+.gallery-page__filmstrip-item--four {
+  transform: rotate(8deg);
+}
+.gallery-page__video video,
+.gallery-page__video-info {
+  will-change: transform, opacity;
+}
+.gallery-page__grid,
+.gallery-photo {
+  will-change: transform, opacity;
+}
+.gallery-page__cta-video,
+.gallery-page__cta-content,
+.gallery-page__cta h2,
+.gallery-page__button {
+  will-change: transform, opacity;
 }

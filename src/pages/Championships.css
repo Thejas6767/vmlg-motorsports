@@ -781,3 +781,28 @@
 .championship-row__link:hover::after {
   width: 100%;
 }
+.championships-media__video {
+  will-change: transform;
+}
+
+.championships-media__content,
+.championships-media__label {
+  will-change: transform, opacity;
+}
+.championships-media__video {
+  will-change: transform;
+}
+
+.championships-media__content {
+  will-change: transform, opacity;
+}
+.championship-row {
+  will-change: transform, opacity;
+}
+
+.championship-row__number,
+.championship-row__icon,
+.championship-row__content,
+.championship-row__link {
+  will-change: transform, opacity;
+}
