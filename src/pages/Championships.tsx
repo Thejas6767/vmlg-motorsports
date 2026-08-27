@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./Championships.css";
 import { championships } from "../data/championships";
 import championshipVideo from "../assets/videos/12294790-hd_1920_1080_24fps.mp4";
-import { motion } from "framer-motion";
+
 
 gsap.registerPlugin(ScrollTrigger);
 const Championships = () => {

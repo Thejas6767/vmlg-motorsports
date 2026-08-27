@@ -6,7 +6,6 @@ import {
 import { motion } from "framer-motion";
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { upcomingEvent } from "../data/events";
 import eventImage from "../assets/images/motocross-air.avif";
 import "./NextEvent.css";
