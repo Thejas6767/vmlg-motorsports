@@ -448,7 +448,7 @@
 .contact-page__hero-image {
   position: absolute;
 
-  top: 56%;
+  top: 45%;
   right: -5%;
 
   width: 50%;
@@ -550,4 +550,22 @@
 
 .contact-page__hero h1 .contact-word--white {
   color: var(--color-white);
+}
+@media (max-width: 600px) {
+  .contact-page__hero-image {
+    transform: translateY(-50%) rotate(3deg) !important;
+  }
+}
+.contact-page__hero-image {
+  will-change: clip-path, transform, opacity;
+}
+.contact-page__info,
+.contact-detail,
+.contact-page__form {
+  will-change: transform, opacity;
+}
+.contact-page__cta span,
+.contact-page__cta h2,
+.contact-page__website {
+  will-change: transform, opacity;
 }

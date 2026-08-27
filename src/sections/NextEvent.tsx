@@ -4,14 +4,101 @@ import {
   MapPin,
 } from "lucide-react";
 import { motion } from "framer-motion";
-
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { upcomingEvent } from "../data/events";
 import eventImage from "../assets/images/motocross-air.avif";
 import "./NextEvent.css";
 
 const NextEvent = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useLayoutEffect(() => {
+    const section = sectionRef.current;
+
+    if (!section) return;
+
+    const ctx = gsap.context(() => {
+      const card = section.querySelector(
+        ".next-event__card"
+      );
+
+      const image = section.querySelector(
+        ".next-event__image"
+      );
+
+      const info = section.querySelector(
+        ".next-event__info"
+      );
+
+      if (!card || !image || !info) return;
+
+     gsap.fromTo(
+  card,
+  {
+    scale: 0.82,
+    y: 100,
+  },
+  {
+    scale: 1,
+    y: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 75%",
+            end: "top 15%",
+            scrub: 1.2,
+          },
+        }
+      );
+
+    gsap.fromTo(
+  image,
+  {
+    x: -140,
+    scale: 1.25,
+  },
+  {
+    x: 0,
+    scale: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 90%",
+            end: "top 10%",
+            scrub: 1.5,
+          },
+        }
+      );
+gsap.fromTo(
+  info,
+  {
+    x: 180,
+    opacity: 0.3,
+  },
+  {
+    x: 0,
+    opacity: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+            end: "top 20%",
+            scrub: 1.3,
+          },
+        }
+      );
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="next-event">
+    <section
+      ref={sectionRef}
+      className="next-event"
+    >
       <div className="next-event__container">
 
         {/* Section heading */}
@@ -92,8 +179,8 @@ const NextEvent = () => {
         {/* Event card */}
         <motion.div
           className="next-event__card"
-          initial={{ opacity: 0, y: 70 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0}}
+          whileInView={{ opacity: 1}}
           viewport={{ once: true, amount: 0.15 }}
           transition={{
             duration: 0.9,
@@ -105,8 +192,8 @@ const NextEvent = () => {
           {/* Image */}
           <motion.div
             className="next-event__image"
-            initial={{ opacity: 0, scale: 1.04 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0}}
+            whileInView={{ opacity: 1}}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
           >
@@ -127,8 +214,8 @@ const NextEvent = () => {
           {/* Information */}
           <motion.div
             className="next-event__info"
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0}}
+            whileInView={{ opacity: 1}}
             viewport={{ once: true }}
             transition={{
               duration: 0.8,

@@ -2,16 +2,184 @@ import { ArrowRight } from "lucide-react";
 import aboutImage from "../assets/images/Screenshot 2026-08-19 175359.jpg";
 import { aboutContent } from "../data/about";
 import experienceVideo from "../assets/videos/12294780-hd_1920_1080_24fps.mp4";
-import { useState } from "react";
+import { useState, useLayoutEffect, useRef } from "react";
 import "./About.css";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
 const About = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const pageRef = useRef<HTMLElement>(null);
   const openExperienceVideo = () => {
   setIsVideoOpen(true);
 };
+useLayoutEffect(() => {
+  const page = pageRef.current;
+
+  if (!page) return;
+
+  const ctx = gsap.context(() => {
+    const story = page.querySelector(".about-page__story");
+    const heading = page.querySelector(".about-page__story-heading");
+    const content = page.querySelector(".about-page__story-content");
+
+    if (!story || !heading || !content) return;
+
+    gsap.fromTo(
+      heading,
+      {
+        x: -100,
+        opacity: 0,
+      },
+      {
+        x: 0,
+        opacity: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: story,
+          start: "top 80%",
+          end: "top 35%",
+          scrub: 1,
+        },
+      }
+    );
+
+    gsap.fromTo(
+      content,
+      {
+        x: 100,
+        opacity: 0,
+      },
+      {
+        x: 0,
+        opacity: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: story,
+          start: "top 80%",
+          end: "top 35%",
+          scrub: 1,
+        },
+      }
+    );
+
+    gsap.fromTo(
+      story,
+      {
+        backgroundPosition: "center 45%",
+      },
+      {
+        backgroundPosition: "center 20%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: story,
+          start: "top 90%",
+          end: "top 35%",
+          scrub: 2,
+        },
+      }
+    );
+        const values = page.querySelector(".about-page__values");
+    const valueCards = page.querySelectorAll(
+      ".about-page__values-grid article"
+    );
+
+    if (values && valueCards.length) {
+      gsap.fromTo(
+        valueCards,
+        {
+          y: 100,
+          opacity: 0,
+          scale: 0.9,
+          rotate: 3,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          rotate: 0,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: values,
+            start: "top 90%",
+            end: "top 45%",
+            scrub: 1.5,
+          },
+        }
+      );
+    }    const videoSection = page.querySelector(
+      ".about-page__video"
+    );
+
+    const videoOverlay = page.querySelector(
+      ".about-page__video-overlay"
+    );
+
+    const videoTitle = page.querySelector(
+      ".about-page__video-overlay h2"
+    );
+
+    const videoButton = page.querySelector(
+      ".about-page__play"
+    );
+
+    if (
+      videoSection &&
+      videoOverlay &&
+      videoTitle &&
+      videoButton
+    ) {
+      gsap.fromTo(
+        videoOverlay,
+        {
+          y: 100,
+          opacity: 0,
+          scale: 0.92,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: videoSection,
+            start: "top 80%",
+            end: "top 35%",
+            scrub: 1,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        videoSection,
+        {
+          backgroundPosition: "center 65%",
+          backgroundSize: "115%",
+        },
+        {
+          backgroundPosition: "center 35%",
+          backgroundSize: "100%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: videoSection,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1.5,
+          },
+        }
+      );
+    }
+  }, page);
+
+  return () => ctx.revert();
+}, []);
   return (
-    <main className="about-page">
+    <main
+  ref={pageRef}
+  className="about-page"
+>
 
       {/* HERO */}
       <section className="about-page__hero">

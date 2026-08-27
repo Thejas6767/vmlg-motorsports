@@ -1,5 +1,9 @@
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { useLayoutEffect, useRef } from "react";
+
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { mediaItems } from "../data/media";
 
 import image1 from "../assets/images/motocross-start.avif";
@@ -8,7 +12,7 @@ import image3 from "../assets/images/race-karting.avif";
 import image4 from "../assets/images/rally-car.avif";
 import videoPoster from "../assets/images/rally-truck.avif";
 import "./Gallery.css";
-
+gsap.registerPlugin(ScrollTrigger);
 const mediaImages = [
   image1,
   image2,
@@ -18,8 +22,49 @@ const mediaImages = [
 ];
 
 const Gallery = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useLayoutEffect(() => {
+    const section = sectionRef.current;
+
+    if (!section) return;
+
+    const ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray<HTMLElement>(
+        ".gallery-card"
+      );
+
+      cards.forEach((card, index) => {
+        const movement =
+          index % 2 === 0 ? -70 : 70;
+
+        gsap.fromTo(
+          card,
+          {
+            y: movement,
+          },
+          {
+            y: 0,
+            ease: "none",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 70%",
+              end: "bottom 30%",
+              scrub: 1.5,
+            },
+          }
+        );
+      });
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="gallery">
+    <section
+      ref={sectionRef}
+      className="gallery"
+    >
       <div className="gallery__container">
 
         {/* Heading */}

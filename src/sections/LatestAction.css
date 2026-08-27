@@ -65,8 +65,6 @@
   display: grid;
   grid-template-columns: 1.55fr 0.75fr;
 
-  background: var(--color-yellow);
-
   overflow: hidden;
 }
 
@@ -360,4 +358,9 @@
 
 .latest-word--yellow {
   color: var(--color-yellow-dark);
+}
+@media (max-width: 900px) {
+  .latest-action__feature {
+    transform: none;
+  }
 }

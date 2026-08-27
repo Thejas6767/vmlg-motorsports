@@ -431,3 +431,8 @@
     gap: 1rem;
   }
 }
+@media (max-width: 600px) {
+  .gallery-card {
+    transform: none !important;
+  }
+}

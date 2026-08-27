@@ -1021,3 +1021,18 @@
     height: 40px;
   }
 }
+.about-page__story {
+  will-change: background-position;
+}
+
+.about-page__story-heading,
+.about-page__story-content {
+  will-change: transform, opacity;
+}
+.about-page__values-grid article {
+  will-change: transform, opacity;
+}
+.about-page__video,
+.about-page__video-overlay {
+  will-change: background-position, background-size, transform, opacity;
+}

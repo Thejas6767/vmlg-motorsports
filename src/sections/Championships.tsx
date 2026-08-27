@@ -1,8 +1,11 @@
 import { ArrowUpRight, Trophy } from "lucide-react";
 import { motion } from "framer-motion";
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
 import { championships } from "../data/championships";
 import "./Championships.css";
-
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 import championshipImage1 from "../assets/images/motocross-jump.avif";
 import championshipImage2 from "../assets/images/race-car-wide.avif";
 const championshipImages = [
@@ -11,8 +14,51 @@ const championshipImages = [
 ];
 
 const Championships = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useLayoutEffect(() => {
+    const section = sectionRef.current;
+
+    if (!section) return;
+
+    const ctx = gsap.context(() => {
+      const images = section.querySelectorAll(
+        ".championship-card__image"
+      );
+
+      images.forEach((image) => {
+        gsap.fromTo(
+          image,
+          {
+            clipPath:
+              "polygon(0 0, 0 0, 0 100%, 0 100%)",
+            scale: 1.15,
+          },
+          {
+            clipPath:
+              "polygon(0 0, 85% 0, 60% 100%, 0 100%)",
+            scale: 1,
+            duration: 1.8,
+            ease: "power3.out",
+           scrollTrigger: {
+  trigger: section,
+  start: "top 55%",
+  end: "top 5%",
+  scrub: 1.2,
+},
+          }
+        );
+      });
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="championships">
+    <section
+      ref={sectionRef}
+      className="championships"
+    >
       <div className="championships__container">
 
         {/* SECTION HEADER */}
@@ -56,11 +102,17 @@ const Championships = () => {
 
           {championships.map((championship, index) => (
             <motion.article
-              className="championship-card"
+  ref={(el) => {
+    if (el) {
+      el.style.setProperty("--card-rotate-x", "0deg");
+      el.style.setProperty("--card-rotate-y", "0deg");
+    }
+  }}
+  className="championship-card"
               key={championship.id}
               initial={{ opacity: 0, y: 70 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
+              viewport={{ once: true, amount: 0.45 }}
               transition={{
                 duration: 0.8,
                 delay: index * 0.15,

@@ -5,13 +5,205 @@ import {
   MapPin,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import { contactContent } from "../data/contact";
 import contactBike from "../assets/images/contact-bike.jpg";
 import "./Contact.css";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const Contact = () => {
+  const pageRef = useRef<HTMLElement>(null);
+
+  useLayoutEffect(() => {
+  const page = pageRef.current;
+
+  if (!page) return;
+
+  const ctx = gsap.context(() => {
+    const hero = page.querySelector(".contact-page__hero");
+    const image = page.querySelector(".contact-page__hero-image");
+    const eyebrow = page.querySelector(".contact-page__eyebrow");
+    const description = page.querySelector(".contact-page__hero p");
+
+    if (!hero || !image || !eyebrow || !description) return;
+
+    const timeline = gsap.timeline({
+      defaults: {
+        ease: "power4.out",
+      },
+    });
+
+    timeline
+      .fromTo(
+        eyebrow,
+        {
+          opacity: 0,
+          y: 20,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+        }
+      )
+      .fromTo(
+        image,
+        {
+          opacity: 0,
+          clipPath: "inset(0 100% 0 0)",
+          scale: 1.15,
+        },
+        {
+          opacity: 1,
+          clipPath: "inset(0 0% 0 0)",
+          scale: 1,
+          duration: 1.4,
+        },
+        "-=0.2"
+      )
+      .fromTo(
+        description,
+        {
+          opacity: 0,
+          y: 30,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+        },
+        "-=0.7"
+      );
+  }, page);
+const content = page.querySelector(".contact-page__content");
+const info = page.querySelector(".contact-page__info");
+const details = page.querySelectorAll(".contact-detail");
+const form = page.querySelector(".contact-page__form");
+
+if (content && info && form) {
+  const contentTimeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: content,
+      start: "top 75%",
+      end: "top 35%",
+      scrub: 1,
+    },
+  });
+
+  contentTimeline
+    .fromTo(
+      info,
+      {
+        x: -100,
+        opacity: 0,
+      },
+      {
+        x: 0,
+        opacity: 1,
+        ease: "power3.out",
+      }
+    )
+    .fromTo(
+      details,
+      {
+        x: -60,
+        opacity: 0,
+      },
+      {
+        x: 0,
+        opacity: 1,
+        stagger: 0.12,
+        ease: "power3.out",
+      },
+      "-=0.5"
+    )
+    .fromTo(
+      form,
+      {
+        x: 120,
+        opacity: 0,
+      },
+      {
+        x: 0,
+        opacity: 1,
+        ease: "power3.out",
+      },
+      "-=0.7"
+    );
+}
+const finalCta = page.querySelector(".contact-page__cta");
+const finalLabel = finalCta?.querySelector("span");
+const finalTitle = finalCta?.querySelector("h2");
+const finalButton = finalCta?.querySelector(
+  ".contact-page__website"
+);
+
+if (finalCta && finalLabel && finalTitle && finalButton) {
+  const finalTimeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: finalCta,
+      start: "top 80%",
+      end: "top 35%",
+      scrub: 1,
+    },
+  });
+
+  finalTimeline
+    .fromTo(
+      finalLabel,
+      {
+        opacity: 0,
+        y: 25,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        ease: "power3.out",
+      }
+    )
+    .fromTo(
+      finalTitle,
+      {
+        opacity: 0,
+        y: 100,
+        skewY: 4,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        skewY: 0,
+        ease: "power4.out",
+      },
+      "-=0.5"
+    )
+    .fromTo(
+      finalButton,
+      {
+        opacity: 0,
+        scale: 0.8,
+        x: 80,
+      },
+      {
+        opacity: 1,
+        scale: 1,
+        x: 0,
+        ease: "back.out(1.5)",
+      },
+      "-=0.35"
+    );
+}
+  return () => ctx.revert();
+}, []);
+
   return (
-    <main className="contact-page">
+    <main
+      ref={pageRef}
+      className="contact-page"
+    >
 
       {/* HERO */}
       <section className="contact-page__hero">
@@ -82,13 +274,6 @@ const Contact = () => {
   src={contactBike}
   alt="Motocross rider"
   aria-hidden="true"
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  transition={{
-    duration: 1,
-    delay: 0.35,
-    ease: "easeOut",
-  }}
 />
         </div>
       </section>

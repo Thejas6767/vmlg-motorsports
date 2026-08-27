@@ -209,7 +209,7 @@
   background-size: cover;
   background-position: center;
 
-  transform: scale(1);
+ transform: scale(var(--event-zoom, 1));
 
   transition: transform 1.2s ease;
 
@@ -762,4 +762,22 @@
 
     padding: 0.9rem 1rem;
   }
+}
+.event-row--image {
+  --event-zoom: 1;
+}
+
+.event-row--image::before {
+  transform: scale(var(--event-zoom));
+  will-change: transform;
+}
+
+.event-row--image__content {
+  will-change: transform, opacity;
+}
+
+.event-row__info,
+.event-row__date,
+.event-row__link {
+  will-change: transform, opacity;
 }

@@ -384,3 +384,13 @@
 .next-word--yellow {
   color: var(--color-yellow-dark);
 }
+@media (max-width: 900px) {
+  .next-event__card {
+    transform: none !important;
+  }
+
+  .next-event__image,
+  .next-event__info {
+    transform: none !important;
+  }
+}

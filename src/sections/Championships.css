@@ -331,3 +331,12 @@
     gap: 1rem;
   }
 }
+.championship-card__image {
+  will-change: clip-path, transform;
+}
+@media (max-width: 850px) {
+  .championship-card__image {
+    clip-path: none !important;
+    transform: none !important;
+  }
+}

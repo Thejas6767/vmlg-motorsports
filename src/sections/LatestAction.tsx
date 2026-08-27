@@ -1,6 +1,9 @@
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
-
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 import { motorsportVideos } from "../data/videos";
 import featuredVideo from "../assets/videos/13028271_1920_1080_60fps.mp4";
 import featuredPoster from "../assets/hero.png";
@@ -10,8 +13,67 @@ import "./LatestAction.css";
 const LatestAction = () => {
   const video = motorsportVideos[0];
 
+  const sectionRef = useRef<HTMLElement>(null);
+useLayoutEffect(() => {
+  const section = sectionRef.current;
+
+  if (!section) return;
+
+  const ctx = gsap.context(() => {
+    const feature = section.querySelector(
+      ".latest-action__feature"
+    );
+
+    const videoPanel = section.querySelector(
+      ".latest-action__video"
+    );
+
+    if (!feature || !videoPanel) return;
+
+    gsap.fromTo(
+      feature,
+      {
+        scale: 0.92,
+        y: 80,
+      },
+      {
+        scale: 1,
+        y: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 75%",
+          end: "top 20%",
+          scrub: 1.2,
+        },
+      }
+    );
+
+    gsap.fromTo(
+      videoPanel,
+      {
+        scale: 0.88,
+      },
+      {
+        scale: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 65%",
+          end: "top 15%",
+          scrub: 1,
+        },
+      }
+    );
+  }, section);
+
+  return () => ctx.revert();
+}, []);
   return (
-    <section className="latest-action">
+    <section
+  ref={sectionRef}
+  className="latest-action"
+>
       <div className="latest-action__container">
 
         <motion.div
@@ -89,7 +151,7 @@ const LatestAction = () => {
 
         <motion.div
           className="latest-action__feature"
-          initial={{ opacity: 0, y: 70 }}
+          initial={{ opacity: 0}}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
           transition={{
@@ -101,8 +163,8 @@ const LatestAction = () => {
 
           <motion.div
             className="latest-action__video"
-            initial={{ opacity: 0, scale: 1.04 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0}}
+            whileInView={{ opacity: 1}}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
           >

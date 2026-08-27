@@ -1,4 +1,9 @@
 import { ArrowUpRight, CalendarDays, MapPin } from "lucide-react";
+import { motion } from "framer-motion";
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import { upcomingEvent } from "../data/events";
 import eventImage from "../assets/images/race-car.avif";
 import bikeJump from "../assets/images/bike-jump-transparent.png";
@@ -8,11 +13,123 @@ import checkeredFlag from "../assets/images/flag.png";
 import type { CSSProperties } from "react";
 import "./Events.css";
 
+gsap.registerPlugin(ScrollTrigger);
 const Events = () => {
   const event = upcomingEvent;
+  const pageRef = useRef<HTMLElement>(null);
+
+  useLayoutEffect(() => {
+    const page = pageRef.current;
+
+    if (!page) return;
+
+    const ctx = gsap.context(() => {
+      const eventCard = page.querySelector(".event-row--image");
+      const eventContent = page.querySelector(".event-row__content");
+      const eventInfo = page.querySelector(".event-row__info");
+      const eventDate = page.querySelector(".event-row__date");
+      const eventButton = page.querySelector(".event-row__link");
+
+      if (
+        !eventCard ||
+        !eventContent ||
+        !eventInfo ||
+        !eventDate ||
+        !eventButton
+      ) {
+        return;
+      }
+
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: eventCard,
+          start: "top 90%",
+          end: "top 40%",
+          scrub: 1.5,
+        },
+      });
+
+      timeline
+        .fromTo(
+          eventCard,
+          {
+            clipPath: "inset(0 0 100% 0)",
+            scale: 0.88,
+          },
+          {
+            clipPath: "inset(0 0 0% 0)",
+            scale: 1,
+            ease: "power3.out",
+          }
+        )
+        .fromTo(
+          eventInfo,
+          {
+            x: -120,
+            opacity: 0,
+          },
+          {
+            x: 0,
+            opacity: 1,
+            ease: "power3.out",
+          },
+          "-=0.55"
+        )
+        .fromTo(
+          eventDate,
+          {
+            x: 100,
+            opacity: 0,
+          },
+          {
+            x: 0,
+            opacity: 1,
+            ease: "power3.out",
+          },
+          "-=0.45"
+        )
+        .fromTo(
+          eventButton,
+          {
+            x: 120,
+            scale: 0.75,
+            opacity: 0,
+          },
+          {
+            x: 0,
+            scale: 1,
+            opacity: 1,
+            ease: "back.out(1.5)",
+          },
+          "-=0.4"
+        );
+
+      gsap.fromTo(
+        eventCard,
+        {
+          "--event-zoom": 1.2,
+        },
+        {
+          "--event-zoom": 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: eventCard,
+            start: "top 90%",
+            end: "top 30%",
+            scrub: 2,
+          },
+        }
+      );
+    }, page);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <main className="events-page">
+ <main
+  ref={pageRef}
+  className="events-page"
+>
 
      
      {/* HERO */}
@@ -37,27 +154,68 @@ const Events = () => {
 
     </div>
 
-    <img
-      src={bikeJump}
-      alt="Motocross rider jumping"
-      className="events-page__hero-image"
-    />
-    <img
+  <motion.img
+  src={bikeJump}
+  alt="Motocross rider jumping"
+  className="events-page__hero-image"
+  initial={{
+    opacity: 0,
+    x: 180,
+    rotate: 8,
+    scale: 1.15,
+  }}
+  animate={{
+    opacity: 1,
+    x: 0,
+    rotate: -3,
+    scale: 1,
+  }}
+  transition={{
+    duration: 1.2,
+    delay: 0.25,
+    ease: [0.16, 1, 0.3, 1],
+  }}
+/>
+  <motion.img
   src={bornToRace}
   alt="Born to Race"
   className="events-page__sticker events-page__sticker--born"
+  initial={{ opacity: 0, scale: 0, rotate: -35 }}
+  animate={{ opacity: 1, scale: 1, rotate: -8 }}
+  transition={{
+    duration: 0.7,
+    delay: 0.8,
+    type: "spring",
+    stiffness: 180,
+  }}
 />
 
-<img
+<motion.img
   src={racingX}
   alt=""
   className="events-page__sticker events-page__sticker--x"
+  initial={{ opacity: 0, scale: 0, rotate: 30 }}
+  animate={{ opacity: 1, scale: 1, rotate: -12 }}
+  transition={{
+    duration: 0.6,
+    delay: 1,
+    type: "spring",
+    stiffness: 200,
+  }}
 />
 
-<img
+<motion.img
   src={checkeredFlag}
   alt=""
   className="events-page__sticker events-page__sticker--flag"
+  initial={{ opacity: 0, scale: 0, rotate: 35 }}
+  animate={{ opacity: 1, scale: 1, rotate: 8 }}
+  transition={{
+    duration: 0.6,
+    delay: 1.1,
+    type: "spring",
+    stiffness: 200,
+  }}
 />
 
   </div>
@@ -72,14 +230,16 @@ const Events = () => {
             <span>01 EVENT</span>
           </div>
 
-          <article
-            className="event-row event-row--image"
-            style={
-              {
-                "--event-image": `url(${eventImage})`,
-              } as CSSProperties
-            }
-          >
+         <article
+  className="event-row event-row--image"
+  
+  style={
+    {
+      "--event-image": `url(${eventImage})`,
+    } as CSSProperties
+  }
+  
+>
 
             {/* DARK OVERLAY */}
             <div className="event-row__overlay" />
