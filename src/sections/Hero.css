@@ -488,10 +488,10 @@
 
 .hero__bike--right {
   position: absolute;
-  right: -70px;
+  right: -60px;
   bottom: -100px;
 
-  width: clamp(280px, 30vw, 500px);
+  width: clamp(360px, 30vw, 480px);
   height: auto;
 
   z-index: 4;
