@@ -467,16 +467,6 @@ if (finalCta && finalLabel && finalTitle && finalButton) {
             <span>AT THE TRACK.</span>
           </h2>
 
-          <a
-            href={contactContent.website}
-            target="_blank"
-            rel="noreferrer"
-            className="contact-page__website"
-          >
-            Visit VMLG
-            <ArrowUpRight size={19} />
-          </a>
-
         </div>
       </section>
 

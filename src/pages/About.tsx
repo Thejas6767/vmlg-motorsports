@@ -2,18 +2,14 @@ import { ArrowRight } from "lucide-react";
 import aboutImage from "../assets/images/Screenshot 2026-08-19 175359.jpg";
 import { aboutContent } from "../data/about";
 import experienceVideo from "../assets/videos/12294780-hd_1920_1080_24fps.mp4";
-import { useState, useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import "./About.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 const About = () => {
-  const [isVideoOpen, setIsVideoOpen] = useState(false);
   const pageRef = useRef<HTMLElement>(null);
-  const openExperienceVideo = () => {
-  setIsVideoOpen(true);
-};
 useLayoutEffect(() => {
   const page = pageRef.current;
 
@@ -301,55 +297,44 @@ useLayoutEffect(() => {
         </div>
       </section>
 
-      {/* VIDEO CTA */}
-      <section className="about-page__video">
+   {/* VIDEO CTA */}
+<section className="about-page__video">
 
-        <div className="about-page__video-overlay">
-
-          <span>03 / EXPERIENCE VMLG</span>
-
-          <h2>
-            LIVE THE
-            <span>RACE.</span>
-          </h2>
-<button
-  className="about-page__play"
-  onClick={openExperienceVideo}
->
-  <span>WATCH Race</span>
-  <ArrowRight size={18} />
-</button>
-
-        </div>
-
-      </section>
-{isVideoOpen && (
-  <div
-    className="about-video-modal"
-    onClick={() => setIsVideoOpen(false)}
+  <video
+    className="about-page__video-bg"
+    autoPlay
+    muted
+    loop
+    playsInline
   >
-    <div
-      className="about-video-modal__content"
-      onClick={(e) => e.stopPropagation()}
-    >
-      <button
-        className="about-video-modal__close"
-        onClick={() => setIsVideoOpen(false)}
-        aria-label="Close video"
-      >
-        ×
-      </button>
+    <source
+      src={experienceVideo}
+      type="video/mp4"
+    />
+  </video>
 
-      <video
-        src={experienceVideo}
-        controls
-        autoPlay
-        playsInline
-        className="about-video-modal__video"
-      />
-    </div>
+  <div className="about-page__video-overlay">
+
+    <span>03 / EXPERIENCE VMLG</span>
+
+    <h2>
+      LIVE THE
+      <span>RACE.</span>
+    </h2>
+
+    <a
+      href="https://www.instagram.com/vamcymerlamotorsports?igsi=cDB5N2JrZzRlNDdr"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="about-page__play"
+    >
+      <span>VISIT INSTAGRAM</span>
+      <ArrowRight size={18} />
+    </a>
+
   </div>
-)}
+
+</section>
     </main>
   );
 };

@@ -12,148 +12,280 @@ const Championships = () => {
   const pageRef = useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {
-    const page = pageRef.current;
+  const page = pageRef.current;
 
-    if (!page) return;
+  if (!page) return;
 
-    const ctx = gsap.context(() => {
-      const videoSection = page.querySelector(
-        ".championships-media"
-      );
-
-      const content = page.querySelector(
-        ".championships-media__content"
-      );
-
-    if (!videoSection || !content) return;
-      gsap.fromTo(
-        content,
-        {
-          y: 300,
-          scale: 0.55,
-          opacity: 0,
-          rotate: -3,
-        },
-        {
-          y: 0,
-          scale: 1,
-          opacity: 1,
-          rotate:0,
-          ease: "power3.out",
-         scrollTrigger: {
-  trigger: videoSection,
-  start: "top 50%",
-  end: "top 20%",
-  scrub: 1.5,
-},
-        }
-      );
-      const rows = page.querySelectorAll(
-  ".championship-row"
-);
-
-if (rows.length) {
-  rows.forEach((row) => {
-    const number = row.querySelector(
-      ".championship-row__number"
+  const ctx = gsap.context(() => {
+    const videoSection = page.querySelector(
+      ".championships-media"
     );
 
-    const icon = row.querySelector(
-      ".championship-row__icon"
+    const videoContent = page.querySelector(
+      ".championships-media__content"
     );
 
-    const content = row.querySelector(
-      ".championship-row__content"
+    const rows = page.querySelectorAll(
+      ".championship-row"
     );
 
-    const link = row.querySelector(
-      ".championship-row__link"
-    );
+    const mm = gsap.matchMedia();
 
-    const rowTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: row,
-        start: "top 50%",
-        end: "top 20%",
-        scrub: 1.5,
-      },
+    // ==============================
+    // DESKTOP
+    // ==============================
+    mm.add("(min-width: 701px)", () => {
+      if (videoSection && videoContent) {
+        gsap.fromTo(
+          videoContent,
+          {
+            y: 300,
+            scale: 0.55,
+            opacity: 0,
+            rotate: -3,
+          },
+          {
+            y: 0,
+            scale: 1,
+            opacity: 1,
+            rotate: 0,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: videoSection,
+              start: "top 50%",
+              end: "top 20%",
+              scrub: 1.5,
+            },
+          }
+        );
+      }
+
+      rows.forEach((row) => {
+        const number = row.querySelector(
+          ".championship-row__number"
+        );
+
+        const icon = row.querySelector(
+          ".championship-row__icon"
+        );
+
+        const content = row.querySelector(
+          ".championship-row__content"
+        );
+
+        const link = row.querySelector(
+          ".championship-row__link"
+        );
+
+        const rowTimeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: row,
+            start: "top 50%",
+            end: "top 20%",
+            scrub: 1.5,
+          },
+        });
+
+        rowTimeline
+          .fromTo(
+            row,
+            {
+              x: 180,
+              opacity: 0,
+            },
+            {
+              x: 0,
+              opacity: 1,
+              ease: "power3.out",
+            }
+          )
+          .fromTo(
+            number,
+            {
+              x: -80,
+              scale: 1.5,
+              opacity: 0,
+            },
+            {
+              x: 0,
+              scale: 1,
+              opacity: 1,
+            },
+            "-=0.6"
+          )
+          .fromTo(
+            icon,
+            {
+              scale: 0,
+              rotate: -45,
+              opacity: 0,
+            },
+            {
+              scale: 1,
+              rotate: 0,
+              opacity: 1,
+              ease: "back.out(1.7)",
+            },
+            "-=0.5"
+          )
+          .fromTo(
+            content,
+            {
+              x: 100,
+              opacity: 0,
+            },
+            {
+              x: 0,
+              opacity: 1,
+            },
+            "-=0.5"
+          )
+          .fromTo(
+            link,
+            {
+              x: 100,
+              scale: 0.7,
+              opacity: 0,
+            },
+            {
+              x: 0,
+              scale: 1,
+              opacity: 1,
+              ease: "back.out(1.5)",
+            },
+            "-=0.5"
+          );
+      });
     });
 
-    rowTimeline
-      .fromTo(
-        row,
-        {
-          x: 180,
-          opacity: 0,
-        },
-        {
-          x: 0,
-          opacity: 1,
-          ease: "power3.out",
-        }
-      )
-      .fromTo(
-        number,
-        {
-          x: -80,
-          scale: 1.5,
-          opacity: 0,
-        },
-        {
-          x: 0,
-          scale: 1,
-          opacity: 1,
-        },
-        "-=0.6"
-      )
-      .fromTo(
-        icon,
-        {
-          scale: 0,
-          rotate: -45,
-          opacity: 0,
-        },
-        {
-          scale: 1,
-          rotate: 0,
-          opacity: 1,
-          ease: "back.out(1.7)",
-        },
-        "-=0.5"
-      )
-      .fromTo(
-        content,
-        {
-          x: 100,
-          opacity: 0,
-        },
-        {
-          x: 0,
-          opacity: 1,
-        },
-        "-=0.5"
-      )
-      .fromTo(
-        link,
-        {
-          x: 100,
-          scale: 0.7,
-          opacity: 0,
-        },
-        {
-          x: 0,
-          scale: 1,
-          opacity: 1,
-          ease: "back.out(1.5)",
-        },
-        "-=0.5"
-      );
-  });
-}
-    }, page);
+    // ==============================
+    // MOBILE
+    // ==============================
+    mm.add("(max-width: 700px)", () => {
+      // Video content appears quickly
+      if (videoSection && videoContent) {
+        gsap.fromTo(
+          videoContent,
+          {
+            y: 40,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.5,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: videoSection,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
 
-    return () => ctx.revert();
-  }, []);
+      // Championship rows appear immediately when entering viewport
+      rows.forEach((row, index) => {
+        const number = row.querySelector(
+          ".championship-row__number"
+        );
+
+        const icon = row.querySelector(
+          ".championship-row__icon"
+        );
+
+        const content = row.querySelector(
+          ".championship-row__content"
+        );
+
+        const link = row.querySelector(
+          ".championship-row__link"
+        );
+
+        const rowTimeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: row,
+            start: "top 90%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+          delay: index * 0.05,
+        });
+
+        rowTimeline
+          .fromTo(
+            row,
+            {
+              y: 35,
+              opacity: 0,
+            },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.45,
+              ease: "power2.out",
+            }
+          )
+          .fromTo(
+            number,
+            {
+              x: -20,
+              opacity: 0,
+            },
+            {
+              x: 0,
+              opacity: 1,
+              duration: 0.3,
+            },
+            "-=0.25"
+          )
+          .fromTo(
+            icon,
+            {
+              scale: 0.8,
+              opacity: 0,
+            },
+            {
+              scale: 1,
+              opacity: 1,
+              duration: 0.3,
+              ease: "back.out(1.5)",
+            },
+            "-=0.2"
+          )
+          .fromTo(
+            content,
+            {
+              y: 15,
+              opacity: 0,
+            },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.35,
+            },
+            "-=0.2"
+          )
+          .fromTo(
+            link,
+            {
+              y: 15,
+              opacity: 0,
+            },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.3,
+            },
+            "-=0.2"
+          );
+      });
+    });
+
+  }, page);
+
+  return () => ctx.revert();
+}, []);
 
   return (
     <main

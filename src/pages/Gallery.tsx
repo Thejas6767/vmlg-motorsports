@@ -16,38 +16,45 @@ import "./Gallery.css";
 const Gallery = () => {
   const pageRef = useRef<HTMLElement>(null);
 
-  useLayoutEffect(() => {
-    const page = pageRef.current;
+useLayoutEffect(() => {
+  const page = pageRef.current;
 
-    if (!page) return;
+  if (!page) return;
 
-    const ctx = gsap.context(() => {
-      const videoSection = page.querySelector(
-        ".gallery-page__video"
-      );
+  const ctx = gsap.context(() => {
+    const isMobile = window.innerWidth <= 600;
 
-      const video = page.querySelector(
-        ".gallery-page__video video"
-      );
+    const scrubValue = isMobile ? 0.5 : 3;
+    const startValue = isMobile ? "top 75%" : "top 55%";
+    const endValue = isMobile ? "top 25%" : "top 5%";
 
-      const videoInfo = page.querySelector(
-        ".gallery-page__video-info"
-      );
+    /* =========================
+       FEATURED VIDEO
+    ========================= */
 
-      const videoTitle = page.querySelector(
-        ".gallery-page__video-info h2"
-      );
+    const videoSection = page.querySelector(
+      ".gallery-page__video"
+    );
 
-      if (!videoSection || !video || !videoInfo || !videoTitle) {
-        return;
-      }
+    const video = page.querySelector(
+      ".gallery-page__video video"
+    );
 
+    const videoInfo = page.querySelector(
+      ".gallery-page__video-info"
+    );
+
+    const videoTitle = page.querySelector(
+      ".gallery-page__video-info h2"
+    );
+
+    if (videoSection && video && videoInfo && videoTitle) {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: videoSection,
-          start: "top 55%",
-          end: "top 5%",
-          scrub: 3,
+          start: startValue,
+          end: endValue,
+          scrub: scrubValue,
         },
       });
 
@@ -64,7 +71,7 @@ const Gallery = () => {
         .fromTo(
           videoInfo,
           {
-            y: 180,
+            y: isMobile ? 80 : 180,
             opacity: 0,
           },
           {
@@ -72,14 +79,14 @@ const Gallery = () => {
             opacity: 1,
             ease: "power3.out",
           },
-          "-=0.5"
+          "-=0.25"
         )
         .fromTo(
           videoTitle,
           {
-            x: -150,
-            scale: 0.55,
-            rotation: -4,
+            x: isMobile ? -70 : -150,
+            scale: isMobile ? 0.75 : 0.55,
+            rotation: isMobile ? -2 : -4,
           },
           {
             x: 0,
@@ -87,207 +94,224 @@ const Gallery = () => {
             rotation: 0,
             ease: "power3.out",
           },
-          "-=0.5"
+          "-=0.25"
         );
-    }, page);
-const photoSection = page.querySelector(
-  ".gallery-page__photos"
-);
+    }
 
-const photoGrid = page.querySelector(
-  ".gallery-page__grid"
-);
+    /* =========================
+       PHOTO GRID
+    ========================= */
 
-const photoCards = page.querySelectorAll(
-  ".gallery-photo"
-);
-
-if (photoSection && photoGrid && photoCards.length === 4) {
-  const photoTimeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: photoSection,
-      start: "top 55%",
-      end: "top 5%",
-      scrub: 3,
-    },
-  });
-
-  photoTimeline
-    .fromTo(
-      photoGrid,
-      {
-        y: 100,
-        scale: 0.92,
-      },
-      {
-        y: 0,
-        scale: 1,
-        ease: "power3.out",
-      }
-    )
-    .fromTo(
-      photoCards[0],
-      {
-        x: -180,
-        y: 120,
-        rotation: -5,
-        opacity: 0,
-      },
-      {
-        x: 0,
-        y: 0,
-        rotation: 0,
-        opacity: 1,
-        ease: "power3.out",
-      },
-      "<"
-    )
-    .fromTo(
-      photoCards[1],
-      {
-        x: 180,
-        y: -100,
-        rotation: 5,
-        opacity: 0,
-      },
-      {
-        x: 0,
-        y: 0,
-        rotation: 0,
-        opacity: 1,
-        ease: "power3.out",
-      },
-      "<"
-    )
-    .fromTo(
-      photoCards[2],
-      {
-        x: -160,
-        y: 100,
-        rotation: -4,
-        opacity: 0,
-      },
-      {
-        x: 0,
-        y: 0,
-        rotation: 0,
-        opacity: 1,
-        ease: "power3.out",
-      },
-      "<"
-    )
-    .fromTo(
-      photoCards[3],
-      {
-        x: 200,
-        y: 120,
-        rotation: 5,
-        opacity: 0,
-      },
-      {
-        x: 0,
-        y: 0,
-        rotation: 0,
-        opacity: 1,
-        ease: "power3.out",
-      },
-      "<"
+    const photoSection = page.querySelector(
+      ".gallery-page__photos"
     );
-}
-const ctaSection = page.querySelector(
-  ".gallery-page__cta"
-);
 
-const ctaVideo = page.querySelector(
-  ".gallery-page__cta-video"
-);
-
-const ctaContent = page.querySelector(
-  ".gallery-page__cta-content"
-);
-
-const ctaTitle = page.querySelector(
-  ".gallery-page__cta h2"
-);
-
-const ctaButton = page.querySelector(
-  ".gallery-page__button"
-);
-
-if (
-  ctaSection &&
-  ctaVideo &&
-  ctaContent &&
-  ctaTitle &&
-  ctaButton
-) {
-  const ctaTimeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: ctaSection,
-      start: "top 55%",
-      end: "top 5%",
-      scrub: 3,
-    },
-  });
-
-  ctaTimeline
-    .fromTo(
-      ctaVideo,
-      {
-        scale: 1.25,
-      },
-      {
-        scale: 1,
-        ease: "none",
-      }
-    )
-    .fromTo(
-      ctaContent,
-      {
-        y: 180,
-        scale: 0.75,
-        opacity: 0,
-      },
-      {
-        y: 0,
-        scale: 1,
-        opacity: 1,
-        ease: "power3.out",
-      },
-      "-=0.5"
-    )
-    .fromTo(
-      ctaTitle,
-      {
-        scale: 0.65,
-        y: 80,
-      },
-      {
-        scale: 1,
-        y: 0,
-        ease: "power3.out",
-      },
-      "-=0.6"
-    )
-    .fromTo(
-      ctaButton,
-      {
-        y: 60,
-        scale: 0.7,
-        opacity: 0,
-      },
-      {
-        y: 0,
-        scale: 1,
-        opacity: 1,
-        ease: "back.out(1.5)",
-      },
-      "-=0.4"
+    const photoGrid = page.querySelector(
+      ".gallery-page__grid"
     );
-}
-    return () => ctx.revert();
-    
-  }, []);
+
+    const photoCards = page.querySelectorAll(
+      ".gallery-photo"
+    );
+
+    if (
+      photoSection &&
+      photoGrid &&
+      photoCards.length === 4
+    ) {
+      const photoTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: photoSection,
+          start: startValue,
+          end: endValue,
+          scrub: scrubValue,
+        },
+      });
+
+      photoTimeline
+        .fromTo(
+          photoGrid,
+          {
+            y: isMobile ? 50 : 100,
+            scale: isMobile ? 0.97 : 0.92,
+          },
+          {
+            y: 0,
+            scale: 1,
+            ease: "power3.out",
+          }
+        )
+        .fromTo(
+          photoCards[0],
+          {
+            x: isMobile ? -60 : -180,
+            y: isMobile ? 40 : 120,
+            rotation: -3,
+            opacity: 0,
+          },
+          {
+            x: 0,
+            y: 0,
+            rotation: 0,
+            opacity: 1,
+            ease: "power3.out",
+          },
+          "<"
+        )
+        .fromTo(
+          photoCards[1],
+          {
+            x: isMobile ? 60 : 180,
+            y: isMobile ? -40 : -100,
+            rotation: 3,
+            opacity: 0,
+          },
+          {
+            x: 0,
+            y: 0,
+            rotation: 0,
+            opacity: 1,
+            ease: "power3.out",
+          },
+          "<"
+        )
+        .fromTo(
+          photoCards[2],
+          {
+            x: isMobile ? -60 : -160,
+            y: isMobile ? 40 : 100,
+            rotation: -3,
+            opacity: 0,
+          },
+          {
+            x: 0,
+            y: 0,
+            rotation: 0,
+            opacity: 1,
+            ease: "power3.out",
+          },
+          "<"
+        )
+        .fromTo(
+          photoCards[3],
+          {
+            x: isMobile ? 60 : 200,
+            y: isMobile ? 40 : 120,
+            rotation: 3,
+            opacity: 0,
+          },
+          {
+            x: 0,
+            y: 0,
+            rotation: 0,
+            opacity: 1,
+            ease: "power3.out",
+          },
+          "<"
+        );
+    }
+
+    /* =========================
+       CTA
+    ========================= */
+
+    const ctaSection = page.querySelector(
+      ".gallery-page__cta"
+    );
+
+    const ctaVideo = page.querySelector(
+      ".gallery-page__cta-video"
+    );
+
+    const ctaContent = page.querySelector(
+      ".gallery-page__cta-content"
+    );
+
+    const ctaTitle = page.querySelector(
+      ".gallery-page__cta h2"
+    );
+
+    const ctaButton = page.querySelector(
+      ".gallery-page__button"
+    );
+
+    if (
+      ctaSection &&
+      ctaVideo &&
+      ctaContent &&
+      ctaTitle &&
+      ctaButton
+    ) {
+      const ctaTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: ctaSection,
+          start: startValue,
+          end: endValue,
+          scrub: scrubValue,
+        },
+      });
+
+      ctaTimeline
+        .fromTo(
+          ctaVideo,
+          {
+            scale: 1.25,
+          },
+          {
+            scale: 1,
+            ease: "none",
+          }
+        )
+        .fromTo(
+          ctaContent,
+          {
+            y: isMobile ? 70 : 180,
+            scale: isMobile ? 0.9 : 0.75,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            scale: 1,
+            opacity: 1,
+            ease: "power3.out",
+          },
+          "-=0.25"
+        )
+        .fromTo(
+          ctaTitle,
+          {
+            scale: isMobile ? 0.8 : 0.65,
+            y: isMobile ? 40 : 80,
+          },
+          {
+            scale: 1,
+            y: 0,
+            ease: "power3.out",
+          },
+          "-=0.3"
+        )
+        .fromTo(
+          ctaButton,
+          {
+            y: isMobile ? 30 : 60,
+            scale: isMobile ? 0.85 : 0.7,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            scale: 1,
+            opacity: 1,
+            ease: "back.out(1.5)",
+          },
+          "-=0.2"
+        );
+    }
+
+    ScrollTrigger.refresh();
+  }, page);
+
+  return () => ctx.revert();
+}, []);
 
   return (
    <main
