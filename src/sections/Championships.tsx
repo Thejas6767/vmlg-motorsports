@@ -1,11 +1,7 @@
 import { ArrowUpRight, Trophy } from "lucide-react";
 import { motion } from "framer-motion";
-import { useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
 import { championships } from "../data/championships";
 import "./Championships.css";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
 import championshipImage1 from "../assets/images/motocross-jump.avif";
 import championshipImage2 from "../assets/images/race-car-wide.avif";
 const championshipImages = [
@@ -14,51 +10,9 @@ const championshipImages = [
 ];
 
 const Championships = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useLayoutEffect(() => {
-    const section = sectionRef.current;
-
-    if (!section) return;
-
-    const ctx = gsap.context(() => {
-      const images = section.querySelectorAll(
-        ".championship-card__image"
-      );
-
-      images.forEach((image) => {
-        gsap.fromTo(
-          image,
-          {
-            clipPath:
-              "polygon(0 0, 0 0, 0 100%, 0 100%)",
-            scale: 1.15,
-          },
-          {
-            clipPath:
-              "polygon(0 0, 85% 0, 60% 100%, 0 100%)",
-            scale: 1,
-            duration: 1.8,
-            ease: "power3.out",
-           scrollTrigger: {
-  trigger: section,
-  start: "top 55%",
-  end: "top 5%",
-  scrub: 1.2,
-},
-          }
-        );
-      });
-    }, section);
-
-    return () => ctx.revert();
-  }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="championships"
-    >
+   <section className="championships">
       <div className="championships__container">
 
         {/* SECTION HEADER */}
@@ -101,35 +55,54 @@ const Championships = () => {
         <div className="championships__grid">
 
           {championships.map((championship, index) => (
-            <motion.article
-  ref={(el) => {
-    if (el) {
-      el.style.setProperty("--card-rotate-x", "0deg");
-      el.style.setProperty("--card-rotate-y", "0deg");
-    }
-  }}
+ <motion.article
   className="championship-card"
-              key={championship.id}
-              initial={{ opacity: 0, y: 70 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.45 }}
-              transition={{
-                duration: 0.8,
-                delay: index * 0.15,
-                ease: "easeOut",
-              }}
-            >
+  key={championship.id}
+  initial={{
+    opacity: 0,
+    x: index === 0 ? -80 : 80,
+    y: 60,
+    rotate: index === 0 ? -3 : 3,
+    scale: 0.94,
+  }}
+  whileInView={{
+    opacity: 1,
+    x: 0,
+    y: 0,
+    rotate: 0,
+    scale: 1,
+  }}
+  viewport={{
+    once: true,
+    amount: 0.2,
+  }}
+  transition={{
+    duration: 1,
+    delay: index * 0.18,
+    ease: [0.16, 1, 0.3, 1],
+  }}
+>
 
-              <motion.div
-                className="championship-card__image"
-                initial={{ scale: 1.08, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 1,
-                  delay: index * 0.15,
-                }}
-              >
+           <motion.div
+  className="championship-card__image"
+  initial={{
+    scale: 1.15,
+    opacity: 0,
+  }}
+  whileInView={{
+    scale: 1,
+    opacity: 1,
+  }}
+  viewport={{
+    once: true,
+    amount: 0.2,
+  }}
+  transition={{
+    duration: 1.2,
+    delay: 0.2 + index * 0.18,
+    ease: [0.16, 1, 0.3, 1],
+  }}
+>
                 <img
                   src={
                     championshipImages[
@@ -148,29 +121,49 @@ const Championships = () => {
                 </span>
               </motion.div>
 
-              <motion.div
-                className="championship-card__content"
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.7,
-                  delay: 0.3 + index * 0.15,
-                }}
-              >
+            <motion.div
+  className="championship-card__content"
+  initial={{
+    opacity: 0,
+    y: 40,
+  }}
+  whileInView={{
+    opacity: 1,
+    y: 0,
+  }}
+  viewport={{
+    once: true,
+    amount: 0.2,
+  }}
+  transition={{
+    duration: 0.8,
+    delay: 0.55 + index * 0.18,
+    ease: [0.16, 1, 0.3, 1],
+  }}
+>
                 <div>
                   <span className="championship-card__label">
                     CHAMPIONSHIP
                   </span>
 
-                  <motion.h3
-  initial={{ opacity: 0, y: 35 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
+<motion.h3
+  initial={{
+    opacity: 0,
+    y: 30,
+    x: -20,
+  }}
+  whileInView={{
+    opacity: 1,
+    y: 0,
+    x: 0,
+  }}
+  viewport={{
+    once: true,
+  }}
   transition={{
-    duration: 0.65,
-    delay: 0.45 + index * 0.15,
-    ease: "easeOut",
+    duration: 0.7,
+    delay: 0.75 + index * 0.18,
+    ease: [0.16, 1, 0.3, 1],
   }}
 >
   {championship.name}

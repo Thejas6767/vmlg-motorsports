@@ -331,12 +331,61 @@
     gap: 1rem;
   }
 }
-.championship-card__image {
-  will-change: clip-path, transform;
+/* ========================================
+   CHAMPIONSHIP CARD - CINEMATIC REVEAL
+   ======================================== */
+
+.championship-card {
+  position: relative;
+  overflow: hidden;
+  transform-origin: center bottom;
 }
-@media (max-width: 850px) {
-  .championship-card__image {
-    clip-path: none !important;
-    transform: none !important;
-  }
+
+.championship-card::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 4px;
+
+  background: var(--color-yellow);
+
+  transform: scaleX(0);
+  transform-origin: left;
+
+  transition: transform 0.6s
+    cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.championship-card:hover::after {
+  transform: scaleX(1);
+}
+
+.championship-card__image {
+  overflow: hidden;
+}
+
+.championship-card__image img {
+  transition:
+    transform 0.8s
+    cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.championship-card:hover
+.championship-card__image img {
+  transform: scale(1.06);
+}
+
+.championship-card__link {
+  transition:
+    transform 0.35s ease,
+    background 0.35s ease;
+}
+
+.championship-card:hover
+.championship-card__link {
+  transform: rotate(-8deg) scale(1.08);
 }

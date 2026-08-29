@@ -11,7 +11,7 @@
 /* HERO */
 
 .gallery-page__hero {
-  padding: clamp(7rem, 12vw, 12rem) 0 6rem;
+  padding: 2rem 0 2rem;
   background: var(--color-yellow);
 }
 
@@ -54,7 +54,7 @@
 
 .gallery-page__hero .gallery-page__container {
   position: relative;
-  min-height: 650px;
+  min-height: 560px;
 
   display: flex;
   align-items: center;
@@ -81,26 +81,36 @@
   transform: translateY(-50%);
 
   z-index: 2;
+
+  display: flex;
+  gap: 8px;
+
+  perspective: 1400px;
 }
 
 .gallery-page__filmstrip-item {
-  position: absolute;
+  position: relative;
 
-  width:350px;
+  flex: 1 1 0;
+  min-width: 0;
+
   height: 450px;
 
   overflow: hidden;
 
-  border: 8px solid var(--color-white);
+  border: 6px solid var(--color-white);
 
   background: var(--color-black);
+
+  cursor: pointer;
+
+  transform-style: preserve-3d;
+  transform-origin: center center;
 
   box-shadow:
     0 25px 50px rgba(17, 17, 17, 0.22);
 
-transition:
-  scale 0.55s cubic-bezier(0.2, 0.8, 0.2, 1),
-  box-shadow 0.4s ease;
+  will-change: flex-grow, transform;
 }
 .gallery-page__filmstrip-item img {
   width: 100%;
@@ -109,94 +119,23 @@ transition:
   display: block;
 
   object-fit: cover;
+
+  transform: scale(1.08);
+
+  filter: grayscale(65%) brightness(0.72);
+
+  will-change: transform, filter;
+
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
-/* INDIVIDUAL POSITIONS */
-
-.gallery-page__filmstrip-item--one {
-  left: 0;
-  top: 80px;
-
-  transform: rotate(-8deg);
-  z-index: 1;
-}
-
-.gallery-page__filmstrip-item--two {
-  left: 20%;
-  top: 15px;
-
-  transform: rotate(4deg);
-  z-index: 2;
-}
-
-.gallery-page__filmstrip-item--three {
-  left: 44%;
-  top: 70px;
-
-  transform: rotate(-5deg);
-  z-index: 3;
-}
-
-.gallery-page__filmstrip-item--four {
-  left: 60%;
-  top: 5px;
-
-  transform: rotate(8deg);
-  z-index: 4;
-}
-@keyframes galleryFloatOne {
-  0%, 100% {
-    transform: rotate(-8deg) translateY(0);
-  }
-
-  50% {
-    transform: rotate(-8deg) translateY(-10px);
-  }
-}
-
-@keyframes galleryFloatTwo {
-  0%, 100% {
-    transform: rotate(4deg) translateY(0);
-  }
-
-  50% {
-    transform: rotate(4deg) translateY(12px);
-  }
-}
-
-@keyframes galleryFloatThree {
-  0%, 100% {
-    transform: rotate(-5deg) translateY(0);
-  }
-
-  50% {
-    transform: rotate(-5deg) translateY(-8px);
-  }
-}
-
-@keyframes galleryFloatFour {
-  0%, 100% {
-    transform: rotate(8deg) translateY(0);
-  }
-
-  50% {
-    transform: rotate(8deg) translateY(10px);
-  }
-}
-/* HOVER */
-.gallery-page__filmstrip-item:hover {
-  animation-play-state: paused;
-
-  scale: 1.18;
-
-  z-index: 20;
-
-  box-shadow:
-    0 35px 70px rgba(0, 0, 0, 0.35);
-}
 /* SECTION HEADER */
 
-.gallery-page__featured,
+.gallery-page__featured {
+  padding: 1rem 0;
+}
+
 .gallery-page__photos {
   padding: clamp(5rem, 9vw, 9rem) 0;
 }
@@ -541,63 +480,32 @@ transition:
 /* MOBILE PHOTO COLLAGE */
 
 .gallery-page__filmstrip {
-  position: relative;
+  position: absolute;
 
-  width: 100%;
-  height: 370px;
+  top: 50%;
+  right: 0;
 
-  margin-top: 2rem;
+  width: 62%;
+  height: 560px;
 
-  top: auto;
-  right: auto;
-  bottom: auto;
-
-  transform: none;
+  transform: translateY(-50%);
 
   z-index: 2;
 }
 
 .gallery-page__filmstrip-item {
-  width: 46%;
-  height: 220px;
+  position: relative;
+
+  flex: 1 1 0;
+
+  width: auto;
+  height: 250px;
+
+  min-width: 0;
 
   border-width: 4px;
-}
 
-.gallery-page__filmstrip-item--one {
-  left: 0;
-  top: 15px;
-
-  transform: rotate(-6deg);
-
-  z-index: 1;
-}
-
-.gallery-page__filmstrip-item--two {
-  left: 52%;
-  top: 0;
-
-  transform: rotate(5deg);
-
-  z-index: 2;
-}
-
-.gallery-page__filmstrip-item--three {
-  left: 4%;
-  top: 145px;
-
-  transform: rotate(-4deg);
-
-  z-index: 3;
-}
-
-.gallery-page__filmstrip-item--four {
-  left: 54%;
-  top: 130px;
-
-  transform: rotate(6deg);
-
-  z-index: 4;
+  transform: none;
 }
 .gallery-page__cta {
   min-height: 550px;
@@ -699,4 +607,43 @@ transition:
 .gallery-page__cta h2,
 .gallery-page__button {
   will-change: transform, opacity;
+}
+.gallery-page__filmstrip-item {
+  transition:
+    box-shadow 0.4s ease;
+}
+
+.gallery-page__filmstrip-item:hover {
+  z-index: 10;
+
+  box-shadow:
+    0 35px 70px rgba(17, 17, 17, 0.35);
+}
+/* DEPTH CAROUSEL POSITION */
+.gallery-page__hero .depth-carousel {
+  position: absolute;
+  top: 50%;
+  right: -3%;
+  width: 62%;
+  height: 540px;
+  transform: translateY(-50%);
+  z-index: 3;
+}
+/* Dome Gallery section */
+.gallery-page__dome {
+  position: relative;
+  width: 100%;
+  height: 700px;
+  overflow: hidden;
+  background: #120f17;
+}
+
+.gallery-page__dome .sphere-root {
+  width: 100%;
+  height: 100%;
+}
+
+.gallery-page__dome .sphere-main {
+  width: 100%;
+  height: 100%;
 }
