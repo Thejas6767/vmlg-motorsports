@@ -392,17 +392,33 @@
     font-size: 0.88rem;
   }
 
-  .gallery__grid {
-    display: grid;
+ .gallery__grid {
+  display: flex;
 
-    grid-template-columns: 1fr;
+  flex-direction: row;
 
-    grid-template-rows:
-      repeat(5, 360px);
+  gap: 0.8rem;
 
-    gap: 0.8rem;
-  }
+  overflow-x: auto;
+  overflow-y: hidden;
 
+  padding-bottom: 0.5rem;
+
+  scroll-snap-type: x mandatory;
+
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: none;
+}
+
+.gallery__grid::-webkit-scrollbar {
+  display: none;
+}
+.gallery-card {
+  flex: 0 0 82%;
+  height: 360px;
+  scroll-snap-align: start;
+}
   .gallery-card--1,
   .gallery-card--2,
   .gallery-card--3,
@@ -412,6 +428,7 @@
 
     grid-row: auto;
   }
+  
 
   .gallery-card__content {
     left: 1rem;

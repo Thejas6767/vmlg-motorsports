@@ -175,9 +175,7 @@ const Gallery = () => {
                   delay: 0.25 + index * 0.1,
                 }}
               >
-                <h3>{item.title}</h3>
-
-                <ArrowUpRight size={20} />
+               <h3>{item.title}</h3>
               </motion.div>
 
             </motion.article>
