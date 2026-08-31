@@ -94,7 +94,7 @@
 
   gap: 1.5rem;
 
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .hero__primary-button {
@@ -392,8 +392,8 @@
 }
 .hero__brand {
   position: absolute;
-  top: 1.5rem;
-  left: 47%;
+  top: 2.2rem;
+  left: 45%;
   transform: translateX(-50%);
   z-index: 5;
 }
@@ -488,13 +488,13 @@
 
 .hero__bike--right {
   position: absolute;
-  right: -60px;
-  bottom: -100px;
+  right: -40px;
+  bottom: -50px;
 
-  width: clamp(360px, 30vw, 480px);
+  width: clamp(260px, 25vw, 400px);
   height: auto;
 
-  z-index: 4;
+  z-index: 2;
   pointer-events: none;
   user-select: none;
 
